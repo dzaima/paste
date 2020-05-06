@@ -1,0 +1,73 @@
+body {
+  background-color: #383838;
+  color: #D3D3D3;
+}
+
+.mainArea {
+  color: #D3D3D3;
+  font-family: DejaVu Sans Mono, Consolas, Monaco, Lucida Console, Liberation Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  font-size: 14px;
+  text-align: left;
+  background: #202020;
+  box-sizing: border-box;
+  width:100%;
+  height:100%;
+  padding: .5em;
+  border:0;
+  margin:0;
+  resize:none;
+  overflow-y: scroll;
+}
+
+.code, code, input {
+  white-space:pre-wrap;
+}
+.codebox > * {
+  white-space:pre-wrap;
+}
+.code.sel {
+  background-color: #11F;
+}
+dt {
+  float:left;
+}
+h1,h2,h3,h4 {
+  margin-top:3px;
+  margin-bottom: 3px;
+}
+.stackItem {
+  height: 75px;
+  background-color: #303030;
+  resize: auto;
+  vertical-align: top;
+}
+
+a {
+  color: #D3F3D3;
+  text-decoration: none;
+}
+button {
+  text-shadow: none;
+  background-color: #444;
+  color: #D3D3D3;
+  border-color: #333333;
+}
+
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* docs CSS */
+
+input {
+  background-color: #505C63;
+  border-color: #666;
+  color: #D3D3D3;
+}
+
+
+@font-face {
+  font-family: "APL386";
+  src: url("APL386.ttf");
+}
