@@ -1,31 +1,30 @@
 function parseC(str, mode) {
-  let regC = '0';
-  let namC = '1'; let nam = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_$";
-  let clsC = '2'; // ^ but starting with uppercase
-  let opsC = '3'; let ops = "=+-*/<>&|%!~";
-  let keyC = '4';
-  let digC = '5'; let dig = "0123456789¯∞";
-  let strC = '6';
-  let funC = '7';
-  let rgxC = '8';
-  let comC = 'C';
-  let keyw;
-  if (mode == 'Java') {
-    keyw = ['abstract','assert','boolean','break','byte','case','catch','char','class','const','continue','default',
+  const regC = '0';
+  const namC = '1'; const nam = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_$";
+  const clsC = '2'; // ^ but starting with uppercase
+  const opsC = '3'; const ops = "=+-*/<>&|%!~";
+  const keyC = '4';
+  const digC = '5'; const dig = "0123456789¯∞";
+  const strC = '6';
+  const funC = '7';
+  const rgxC = '8';
+  const comC = 'C';
+  const keyw = 
+    mode == 'Java'?
+    ['abstract','assert','boolean','break','byte','case','catch','char','class','const','continue','default',
     'do','double','else','enum','extends','final','finally','float','for','goto','if','implements','import','instanceof',
     'int','interface','long','native','new','package','private','protected','public','return','short','static','strictfp',
-    'super','switch','synchronized','this','throw','throws','transient','try','void','volatile','while'];
-  } else if (mode == 'JS') {
-    keyw = ['abstract','arguments','await','boolean','break','byte','case','catch','char','class','const','continue','debugger',
+    'super','switch','synchronized','this','throw','throws','transient','try','void','volatile','while']
+  : mode == 'JS'?
+    ['abstract','arguments','await','boolean','break','byte','case','catch','char','class','const','continue','debugger',
     'default','delete','do','double','else','enum','eval','export','extends','false','final','finally','float','for','function',
     'goto','if','implements','import','in','instanceof','int','interface','let','long','native','new','null','package','private',
     'protected','public','return','short','static','super','switch','synchronized','this','throw','throws','transient','true',
-    'try','typeof','var','void','volatile','while','with','yield'];
-  } else {
-    keyw = ['auto','break','case','char','const','continue','default','do','double','else','enum',
+    'try','typeof','var','void','volatile','while','with','yield']
+  :
+    ['auto','break','case','char','const','continue','default','do','double','else','enum',
     'extern','float','for','goto','if','int','long','register','return','short','signed','sizeof',
     'static','struct','switch','typedef','union','unsigned','void','volatile','while'];
-  }
   if (!window.CStyle) {
     let s = document.createElement("style");
     s.id = "CStyle";
@@ -44,13 +43,13 @@ function parseC(str, mode) {
     `;
     document.body.appendChild(s);
   }
-  let res = new Array(str.length).fill();
+  const res = new Array(str.length).fill();
   res[0] = regC;
   
   for (let i = 0; i < str.length; ) {
-    let p = str[i-1]||'\0';
-    let c = str[i  ];
-    let n = str[i+1]||'\0';
+    const p = str[i-1]||'\0';
+    const c = str[i  ];
+    const n = str[i+1]||'\0';
     
     if (mode=='JS' && c=='/' && n!='*' && n!='/') {
       let j = i-1;

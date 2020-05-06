@@ -1,6 +1,8 @@
 body {
   background-color: #383838;
   color: #D3D3D3;
+  scrollbar-color: #666 #333; /* firefox */
+  height: 100%;
 }
 
 .mainArea {
@@ -16,31 +18,10 @@ body {
   border:0;
   margin:0;
   resize:none;
-  overflow-y: scroll;
+  overflow-y: auto;
+  display: block; /* for some reason otherwise the global scrollbar appears */
 }
 
-.code, code, input {
-  white-space:pre-wrap;
-}
-.codebox > * {
-  white-space:pre-wrap;
-}
-.code.sel {
-  background-color: #11F;
-}
-dt {
-  float:left;
-}
-h1,h2,h3,h4 {
-  margin-top:3px;
-  margin-bottom: 3px;
-}
-.stackItem {
-  height: 75px;
-  background-color: #303030;
-  resize: auto;
-  vertical-align: top;
-}
 
 a {
   color: #D3F3D3;
@@ -54,20 +35,23 @@ button {
 }
 
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* docs CSS */
-
-input {
-  background-color: #505C63;
-  border-color: #666;
-  color: #D3D3D3;
-}
-
 
 @font-face {
   font-family: "APL386";
   src: url("APL386.ttf");
+}
+
+
+
+::-webkit-scrollbar-button, ::-webkit-scrollbar-track {
+  display:none;
+}
+::-webkit-scrollbar-thumb {
+  background-color:#666;
+}
+::-webkit-scrollbar, ::-webkit-scrollbar-corner {
+  background-color:#333;
+}
+::-webkit-scrollbar-thumb {
+  border: none;
 }

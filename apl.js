@@ -1,19 +1,19 @@
 function parseAPL(str, mode) {
-  let regC = '0';
-  let fnsC = '1'; let fns = "^⌹⍳⍴!%*+,-<=>?|~⊢⊣⌷≤≥≠∨∧÷×∊↑↓○⌈⌊⊂⊃∩∪⊥⊤⍱⍲⍒⍋⍉⌽⊖⍟⍕⍎⍪≡≢⍷⍸⊆⊇⍧⍮√ϼ…";
-  let mopC = '2'; let mop = "¨⍨⌸⍁⍩ᑈᐵ⌶/\\";
-  let dopC = '3'; let dop = ".@∘⌺⍫⍣⍢⍤⍛⍡⍥";
-  let namC = '4'; let nam = "⎕⍞∆⍙ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
-  let digC = '5'; let dig = "0123456789";
-  let arrC = '5'; let arr = "⍬";
-  let dfnC = '6'; let dfn = "⍺⍵⍶⍹∇{}";
-  let strC = '7'; // '' ""
-  let dmdC = 'D'; let dmd = "⋄←→";
-  let comC = 'C'; // ⍝
+  const regC = '0';
+  const fnsC = '1'; let   fns = "^⌹⍳⍴!%*+,-<=>?|~⊢⊣⌷≤≥≠∨∧÷×∊↑↓○⌈⌊⊂⊃∩∪⊥⊤⍱⍲⍒⍋⍉⌽⊖⍟⍕⍎⍪≡≢⍷⍸⊆⊇⍧⍮√ϼ…";
+  const mopC = '2'; let   mop = "¨⍨⌸⍁⍩ᑈᐵ⌶/\\";
+  const dopC = '3'; const dop = ".@∘⌺⍫⍣⍢⍤⍛⍡⍥";
+  const namC = '4'; const nam = "⎕⍞∆⍙ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
+  const digC = '5'; const dig = "0123456789";
+  const arrC = '5'; const arr = "⍬";
+  const dfnC = '6'; const dfn = "⍺⍵⍶⍹∇{}";
+  const strC = '7'; // '' ""
+  const dmdC = 'D'; const dmd = "⋄←→";
+  const comC = 'C'; // ⍝
   if (mode=='dzaima') fns+= "⌿⍀";
   else                mop+= "⌿⍀";
   if (!window.APLStyle) {
-    let s = document.createElement("style");
+    const s = document.createElement("style");
     s.id = "APLStyle";
     s.innerText=`
       .A${regC} { color: #D2D2D2; }
@@ -31,7 +31,7 @@ function parseAPL(str, mode) {
     document.body.appendChild(s);
   }
   // let unkC = 9; let unk = "⍇⍂⊙⌻⌼⍃⍄⍅⍆⍈⍊⍌⍍⍏⍐⍑⍓⍔⍖⍗⍘⍚⍜⍠⍦⍭⍯⍰‽⊗∍⋾";
-  let res = new Array(str.length).fill();
+  const res = new Array(str.length).fill();
   res[0] = regC;
   for (let i = 0; i < str.length; ) {
     let p = str[i-1]||'\0';

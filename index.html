@@ -39,9 +39,9 @@
       ED = ed;
       JS = js;
       let gen = !(ED || JS);
-      main.hidden = !ED;
-      jscd.hidden = !JS;
-      genc.hidden = !gen;
+      main.style.display = ED ? 'block' : 'none';
+      jscd.style.display = JS ? 'block' : 'none';
+      genc.style.display = gen? 'block' : 'none';
       lockB.innerText=ED? "view" : "edit";
       jscdB.innerText=JS? "view" : "JS";
       if(gen) generate();
