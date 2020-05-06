@@ -88,7 +88,7 @@
     
     
     function save() {
-      let b64 = "#"+enc(main.value);
+      let b64 = "#0"+enc(main.value);
       if (jscd.value) {
         let ext = enc(jscd.value);
         for (let key in shortJS) {
@@ -132,6 +132,8 @@
     function load() {
       main.value = "";
       let hash = decodeURIComponent(location.hash.slice(1));
+      let v = hash[0];
+      hash = hash.slice(1);
       if (hash) {
         let parts = hash.split("#");
         main.value = dec(parts[0]);
