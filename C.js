@@ -26,9 +26,9 @@ function parseC(str, mode) {
     'extern','float','for','goto','if','int','long','register','return','short','signed','sizeof',
     'static','struct','switch','typedef','union','unsigned','void','volatile','while'];
   }
-  if (!window.APLStyle) {
+  if (!window.CStyle) {
     let s = document.createElement("style");
-    s.id = "APLStyle";
+    s.id = "CStyle";
     s.innerText=`
       .C${opsC} { color: #CC7832; }
       
@@ -116,7 +116,6 @@ function parseC(str, mode) {
             j++;
           } else while(nam.includes(str[j]) || dig.includes(str[j])) j++;
           while (str[j] && str[j]==' ') j++;
-          console.log(j, str[j], str[j+1]);
           if (str[j]=='=' && str[j+1]=='>') res[si] = funC;
         }
       }
