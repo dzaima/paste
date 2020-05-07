@@ -5,8 +5,8 @@ body {
 
 
 body.dark  { background-color: #383838; color: #D3D3D3; } body.dark  .mainArea { background-color: #202020; color: #D3D3D3; }
-body.light { background-color: #f8f8f8; color: #000000; } body.light .mainArea { background-color: #ffffff; color: #000000; border: 1px solid #a9a9a9; }
 body.black { background-color: #222222; color: #D3D3D3; } body.black .mainArea { background-color: #000000; color: #D3D3D3; }
+body.light { background-color: #f8f8f8; color: #000000; } body.light .mainArea { background-color: #ffffff; color: #000000; border: 1px solid #a9a9a9; }
 
 
 .mainArea {
@@ -31,11 +31,16 @@ a {
 }
 button {
   text-shadow: none;
-  background-color: #444;
-  color: #D3D3D3;
-  border-color: #333333;
   vertical-align: middle;
   text-align: center;
+}
+body.dt button {
+  background-color: #444;
+  color: #D3D3D3;
+  border-color: #333;
+}
+body.dt button[disabled] {
+  color: #808080;
 }
 
 
