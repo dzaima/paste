@@ -18,15 +18,15 @@ function parseAPL(str, mode) {
     s.innerText=`
       body.dt .A${regC} { color: #D2D2D2; }  body.lt .A${regC} { color: #000000; }
       body.dt .A${namC} { color: #D2D2D2; }  body.lt .A${namC} { color: #000000; }
-      body.dt .A${comC} { color: #BBBBBB; }  body.lt .A${comC} { color: #6a737d; }
-      body.dt .A${digC} { color: #AA88BB; }  body.lt .A${digC} { color: #005cc5; }
-      body.dt .A${arrC} { color: #DD99FF; }  body.lt .A${arrC} { color: #005cc5; }
+      body.dt .A${comC} { color: #BBBBBB; }  body.lt .A${comC} { color: #6A737D; }
+      body.dt .A${digC} { color: #AA88BB; }  body.lt .A${digC} { color: #005CC5; }
+      body.dt .A${arrC} { color: #DD99FF; }  body.lt .A${arrC} { color: #005CC5; }
       body.dt .A${dmdC} { color: #FFFF00; }  body.lt .A${dmdC} { color: #0000FF; }
-      body.dt .A${strC} { color: #DDAAEE; }  body.lt .A${strC} { color: #032f62; }
-      body.dt .A${fnsC} { color: #00FF00; }  body.lt .A${fnsC} { color: #d73a49; }
-      body.dt .A${mopC} { color: #FF9955; }  body.lt .A${mopC} { color: #ed5f00; }
-      body.dt .A${dopC} { color: #FFDD66; }  body.lt .A${dopC} { color: #c82c00; }
-      body.dt .A${dfnC} { color: #AA77BB; }  body.lt .A${dfnC} { color: #a906d4; }
+      body.dt .A${strC} { color: #DDAAEE; }  body.lt .A${strC} { color: #032F62; }
+      body.dt .A${fnsC} { color: #00FF00; }  body.lt .A${fnsC} { color: #D73A49; }
+      body.dt .A${mopC} { color: #FF9955; }  body.lt .A${mopC} { color: #ED5F00; }
+      body.dt .A${dopC} { color: #FFDD66; }  body.lt .A${dopC} { color: #C82C00; }
+      body.dt .A${dfnC} { color: #AA77BB; }  body.lt .A${dfnC} { color: #A906D4; }
     `;
     document.body.appendChild(s);
   }
