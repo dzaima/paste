@@ -41,6 +41,7 @@ function parseAPL(str, mode) {
     if (dig.includes(c) || c=='.'&&dig.includes(n)) {
       res[i] = digC;
       while(dig.includes(str[i]) || str[i]=='e' || str[i]=='E' || str[i]=='.') i++;
+      if (str[i]=='L' && mode=='dzaima') i++;
       continue;
     }
     else if (fns.includes(c)) res[i] = fnsC;
