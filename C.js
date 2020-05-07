@@ -4,7 +4,7 @@ function parseC(str, mode) {
   const clsC = '2'; // ^ but starting with uppercase
   const opsC = '3'; const ops = "=+-*/<>&|%!~";
   const keyC = '4';
-  const digC = '5'; const dig = "0123456789¯∞";
+  const digC = '5'; const dig = "0123456789";
   const strC = '6';
   const funC = '7';
   const rgxC = '8';
@@ -29,17 +29,16 @@ function parseC(str, mode) {
     let s = document.createElement("style");
     s.id = "CStyle";
     s.innerText=`
-      .C${opsC} { color: #CC7832; }
-      
-      .C${digC} { color: #6897BB; }
-      .C${regC} { color: #D2D2D2; }
-      .C${namC} { color: #D2D2D2; }
-      .C${clsC} { color: #81A2BE; }
-      .C${funC} { color: #AC885B; }
-      .C${strC} { color: #F9EE98; }
-      .C${rgxC} { color: #F9EE98; }
-      .C${comC} { color: #808080; }
-      .C${keyC} { color: #cf6a4c; }
+      body.dt .C${regC} { color: #D2D2D2; }  body.lt .C${regC} { color: #000000; }
+      body.dt .C${namC} { color: #D2D2D2; }  body.lt .C${namC} { color: #000000; }
+      body.dt .C${clsC} { color: #81A2BE; }  body.lt .C${clsC} { color: #6F42C1; }
+      body.dt .C${funC} { color: #AC885B; }  body.lt .C${funC} { color: #6F42C1; } 
+      body.dt .C${keyC} { color: #CF6A4C; }  body.lt .C${keyC} { color: #D73A49; }
+      body.dt .C${comC} { color: #808080; }  body.lt .C${comC} { color: #6A737D; }
+      body.dt .C${opsC} { color: #CC7832; }  body.lt .C${opsC} { color: #D73A49; }
+      body.dt .C${digC} { color: #6897BB; }  body.lt .C${digC} { color: #005CC5; }
+      body.dt .C${strC} { color: #F9EE98; }  body.lt .C${strC} { color: #032F62; }
+      body.dt .C${rgxC} { color: #F9EE98; }  body.lt .C${rgxC} { color: #032F62; }
     `;
     document.body.appendChild(s);
   }

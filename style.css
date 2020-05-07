@@ -1,16 +1,18 @@
 body {
-  background-color: #383838;
-  color: #D3D3D3;
   scrollbar-color: #666 #333; /* firefox */
   height: 100%;
 }
 
+
+body.dark  { background-color: #383838; color: #D3D3D3; } body.dark  .mainArea { background-color: #202020; color: #D3D3D3; }
+body.light { background-color: #f8f8f8; color: #000000; } body.light .mainArea { background-color: #ffffff; color: #000000; border: 1px solid #a9a9a9; }
+body.black { background-color: #282923; color: #D3D3D3; } body.black .mainArea { background-color: #000000; color: #D3D3D3; }
+
+
 .mainArea {
-  color: #D3D3D3;
   font-family: DejaVu Sans Mono, Consolas, Monaco, Lucida Console, Liberation Mono, Bitstream Vera Sans Mono, Courier New, monospace;
   font-size: 14px;
   text-align: left;
-  background: #202020;
   box-sizing: border-box;
   width:100%;
   height:100%;
@@ -32,6 +34,8 @@ button {
   background-color: #444;
   color: #D3D3D3;
   border-color: #333333;
+  vertical-align: middle;
+  text-align: center;
 }
 
 

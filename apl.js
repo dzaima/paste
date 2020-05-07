@@ -4,10 +4,10 @@ function parseAPL(str, mode) {
   const mopC = '2'; let   mop = "¨⍨⌸⍁⍩ᑈᐵ⌶/\\";
   const dopC = '3'; const dop = ".@∘⌺⍫⍣⍢⍤⍛⍡⍥";
   const namC = '4'; const nam = "⎕⍞∆⍙ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
-  const digC = '5'; const dig = "0123456789";
-  const arrC = '5'; const arr = "⍬";
-  const dfnC = '6'; const dfn = "⍺⍵⍶⍹∇{}";
-  const strC = '7'; // '' ""
+  const digC = '5'; const dig = "0123456789¯∞";
+  const arrC = '6'; const arr = "⍬";
+  const dfnC = '7'; const dfn = "⍺⍵⍶⍹∇{}";
+  const strC = '8'; // '' ""
   const dmdC = 'D'; const dmd = "⋄←→";
   const comC = 'C'; // ⍝
   if (mode=='dzaima') fns+= "⌿⍀";
@@ -16,17 +16,17 @@ function parseAPL(str, mode) {
     const s = document.createElement("style");
     s.id = "APLStyle";
     s.innerText=`
-      .A${regC} { color: #D2D2D2; }
-      .A${namC} { color: #D2D2D2; }
-      .A${comC} { color: #BBBBBB; }
-      .A${digC} { color: #AA88BB; }
-      .A${arrC} { color: #DD99FF; }
-      .A${dmdC} { color: #FFFF00; }
-      .A${strC} { color: #DDAAEE; }
-      .A${fnsC} { color: #00FF00; }
-      .A${mopC} { color: #FF9955; }
-      .A${dopC} { color: #FFDD66; }
-      .A${dfnC} { color: #AA77BB; }
+      body.dt .A${regC} { color: #D2D2D2; }  body.lt .A${regC} { color: #000000; }
+      body.dt .A${namC} { color: #D2D2D2; }  body.lt .A${namC} { color: #000000; }
+      body.dt .A${comC} { color: #BBBBBB; }  body.lt .A${comC} { color: #6a737d; }
+      body.dt .A${digC} { color: #AA88BB; }  body.lt .A${digC} { color: #005cc5; }
+      body.dt .A${arrC} { color: #DD99FF; }  body.lt .A${arrC} { color: #005cc5; }
+      body.dt .A${dmdC} { color: #FFFF00; }  body.lt .A${dmdC} { color: #0000FF; }
+      body.dt .A${strC} { color: #DDAAEE; }  body.lt .A${strC} { color: #032f62; }
+      body.dt .A${fnsC} { color: #00FF00; }  body.lt .A${fnsC} { color: #d73a49; }
+      body.dt .A${mopC} { color: #FF9955; }  body.lt .A${mopC} { color: #ed5f00; }
+      body.dt .A${dopC} { color: #FFDD66; }  body.lt .A${dopC} { color: #c82c00; }
+      body.dt .A${dfnC} { color: #AA77BB; }  body.lt .A${dfnC} { color: #a906d4; }
     `;
     document.body.appendChild(s);
   }
@@ -34,10 +34,16 @@ function parseAPL(str, mode) {
   const res = new Array(str.length).fill();
   res[0] = regC;
   for (let i = 0; i < str.length; ) {
-    let p = str[i-1]||'\0';
-    let c = str[i  ];
-    let n = str[i+1]||'\0';
-         if (fns.includes(c)) res[i] = fnsC;
+    const p = str[i-1]||'\0';
+    const c = str[i  ];
+    const n = str[i+1]||'\0';
+    
+    if (dig.includes(c) || c=='.'&&dig.includes(n)) {
+      res[i] = digC;
+      while(dig.includes(str[i]) || str[i]=='e' || str[i]=='E' || str[i]=='.') i++;
+      continue;
+    }
+    else if (fns.includes(c)) res[i] = fnsC;
     else if (mop.includes(c)) res[i] = mopC;
     else if (dop.includes(c)) res[i] = dopC;
     else if (dfn.includes(c)) res[i] = dfnC;
@@ -51,11 +57,6 @@ function parseAPL(str, mode) {
         if (str[i]=='"') { res[i] = strC; i++; while(str[i] && str[i]!='"') i++; res[i+1] = regC; }
         if (str[i]=="'") { res[i] = strC; i++; while(str[i] && str[i]!="'") i++; res[i+1] = regC; }
       }
-    }
-    else if (dig.includes(c) || c=='.'&&dig.includes(n)) {
-      res[i] = digC;
-      while(dig.includes(str[i]) || str[i]=='e' || str[i]=='E' || str[i]=='.') i++;
-      continue;
     }
     else if (nam.includes(c)) {
       res[i] = namC;

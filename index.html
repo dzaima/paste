@@ -9,11 +9,12 @@
   <script src="C.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <button id="saveB" style="height:2.6em;width:4em" onclick="save()">save</button>
-  <button id="lockB" style="height:2.6em;width:4em" onclick="md(!ED, false)">view</button>
-  <button id="jscdB" style="height:2.6em;width:4em" onclick="md(false, !JS)">JS</button>
-  <button id="copyB" style="height:2.6em;width:4em" onclick="copy(main.value)">copy</button>
+<body class="dark">
+  <button id="saveB" style="height:2.6em;width:4.5em" onclick="save()">save</button>
+  <button id="lockB" style="height:2.6em;width:4.5em" onclick="md(!ED, false)">view</button>
+  <button id="jscdB" style="height:2.6em;width:4.5em" onclick="md(false, !JS)">setup<br>JS</button>
+  <button id="copyB" style="height:2.6em;width:4.5em" onclick="copy(main.value)">copy</button>
+  <button id="colsB" style="height:2.6em;width:4.5em" onclick="changeTheme()">theme</button>
   <div style="position:absolute; top:3em; left:.5em; right:.5em; bottom:0">
     <textarea class="mainArea" id="main" spellcheck="false"></textarea>
     <textarea class="mainArea" id="jscd" spellcheck="false"></textarea>
@@ -43,7 +44,7 @@
       jscd.style.display = JS ? 'block' : 'none';
       genc.style.display = gen? 'block' : 'none';
       lockB.innerText=ED? "view" : "edit";
-      jscdB.innerText=JS? "view" : "JS";
+      jscdB.innerHTML=JS? "view" : "setup<br>JS";
       if(gen) generate();
     }
     
@@ -85,6 +86,19 @@
       if (sz) genc.style.fontSize = sz+"px";
     }
     
+    
+    var theme = 0; // 0 - dark; 1 - light; 2 - black; 3 - default
+    function changeTheme(nTheme = (theme+1) % 4) {
+      theme = nTheme;
+      localStorage.theme = nTheme;
+      let colorScheme = theme==3? (window.matchMedia('(prefers-color-scheme: dark)').matches? 0 : 1) : theme;
+      const themes = ["dark", "light", "black", "system"];
+      document.body.classList.remove(...themes, "lt", "dt");
+      document.body.classList.add(themes[colorScheme]);
+      document.body.classList.add(colorScheme==1? "lt" : "dt");
+      colsB.innerHTML = "theme<br>" + themes[theme];
+    }
+    changeTheme(localStorage.theme? +localStorage.theme : 0);
     
     
     function save() {
