@@ -120,7 +120,11 @@
       return arrToB64(deflate(bytes));
     }
     function dec(str) {
-      return new TextDecoder("utf-8").decode(inflate(b64ToArr(str)));
+      try {
+        return new TextDecoder("utf-8").decode(inflate(b64ToArr(str)));
+      } catch (e) {
+        return "failed to decode - full link not copied?";
+      }
     }
 
     function arrToB64(arr) {
@@ -170,7 +174,7 @@
       let ctrl = e.ctrlKey;
       let alt = e.altKey;
       if (alt) {
-        if (code == 'KeyS') { saveB.click(); e.preventDefault(); }
+        if (code == 'KeyS') { saveB.click(); e.preventDefault(); viewB.click(); }
         if (code == 'KeyE') { editB.click(); e.preventDefault(); main.focus(); }
         if (code == 'KeyV') { viewB.click(); e.preventDefault(); }
         if (code == 'KeyJ') { jscdB.click(); e.preventDefault(); jscd.focus(); }
