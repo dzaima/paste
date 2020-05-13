@@ -47,6 +47,7 @@
       editB.disabled = ED;
       jscdB.disabled = JS;
       viewB.disabled = gen;
+      if (ED) main.focus();
       if(gen) generate();
     }
     
@@ -165,6 +166,7 @@
         }
         md(!parts[0], false);
       }
+      md(true, false);
     }
     load();
     window.onhashchange=load;
