@@ -11,9 +11,9 @@
 </head>
 <body class="dark">
   <button id="saveB" style="height:2.6em;width:4.5em" onclick="save(true)">save</button>
-  <button id="editB" style="height:2.6em;width:4.5em" onclick="md(true , false)">edit</button>
-  <button id="viewB" style="height:2.6em;width:4.5em" onclick="md(false, false)">view</button>
-  <button id="jscdB" style="height:2.6em;width:4.5em" onclick="md(false,  true)">setup<br>JS</button>
+  <button id="editB" style="height:2.6em;width:4.5em" onclick="md(0)">edit</button>
+  <button id="viewB" style="height:2.6em;width:4.5em" onclick="md(2)">view</button>
+  <button id="jscdB" style="height:2.6em;width:4.5em" onclick="md(1)">setup<br>JS</button>
   <button id="copyB" style="height:2.6em;width:4.5em" onclick="copy(main.value)">copy</button>
   <button id="colsB" style="height:2.6em;width:4.5em" onclick="changeTheme()">theme</button>
   <div style="position:absolute; top:3em; left:.5em; right:.5em; bottom:0">
@@ -35,20 +35,18 @@
     };
     
     
-    var ED = false;
-    var JS = false;
-    function md(ed, js) {
-      ED = ed;
-      JS = js;
-      let gen = !(ED || JS);
-      main.style.display = ED ? 'block' : 'none';
-      jscd.style.display = JS ? 'block' : 'none';
-      genc.style.display = gen? 'block' : 'none';
-      editB.disabled = ED;
-      jscdB.disabled = JS;
-      viewB.disabled = gen;
-      if (ED) main.focus();
-      if(gen) generate();
+    var MODE = 0; // 0-edit; 1-JS edit; 2-view
+    
+    function md(mode) {
+      MODE = mode;
+      main.style.display = MODE==0? 'block' : 'none';
+      jscd.style.display = MODE==1? 'block' : 'none';
+      genc.style.display = MODE==2? 'block' : 'none';
+      editB.disabled = MODE==0;
+      jscdB.disabled = MODE==1;
+      viewB.disabled = MODE==2;
+      if (mode==0) main.focus();
+      if (mode==2) generate();
     }
     
     
@@ -164,9 +162,8 @@
           if (shortJS[p2]) jscd.value = shortJS[p2];
           else jscd.value = dec(p2);
         }
-        md(!parts[0], false);
-      }
-      md(true, false);
+        md(main.value? 2 : 0);
+      } else md(0);
     }
     load();
     window.onhashchange=load;
