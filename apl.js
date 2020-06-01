@@ -2,7 +2,7 @@ function parseAPL(str, mode) {
   const regC = '0';
   const fnsC = '1'; let   fns = "^⌹⍳⍴!%*+,-<=>?|~⊢⊣⌷≤≥≠∨∧÷×∊↑↓○⌈⌊⊂⊃∩∪⊥⊤⍱⍲⍒⍋⍉⌽⊖⍟⍕⍎⍪≡≢⍷⍸⊆⊇⍧⍮√ϼ…";
   const mopC = '2'; let   mop = "¨⍨⌸⍁⍩ᑈᐵ⌶/\\";
-  const dopC = '3'; const dop = ".@∘⌺⍫⍣⍢⍤⍛⍡⍥";
+  const dopC = '3'; const dop = ".@∘⌺⍫⍣⍢⍤⍛⍡⍥⍠";
   const namC = '4'; const nam = "⎕⍞∆⍙ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
   const digC = '5'; const dig = "0123456789¯∞";
   const arrC = '6'; const arr = "⍬";
