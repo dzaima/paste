@@ -5,8 +5,8 @@ function parseAPL(str, mode) {
   const dopC = '3'; const dop = ".@∘⌺⍫⍣⍢⍤⍛⍡⍥⍠";
   const namC = '4'; const nam = "⎕⍞∆⍙ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
   const digC = '5'; const dig = "0123456789¯∞";
-  const arrC = '6'; const arr = "⍬";
-  const dfnC = '7'; const dfn = "⍺⍵⍶⍹∇{}";
+  const arrC = '6'; const arr = "⍬#";
+  const dfnC = '7'; const dfn = "⍺⍵⍶⍹∇{}:";
   const strC = '8'; // '' ""
   const dmdC = 'D'; const dmd = "⋄←→";
   const comC = 'C'; // ⍝
