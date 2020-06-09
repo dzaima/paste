@@ -11,21 +11,21 @@ function parseBQN(str) {
   const strC = '8'; // '' ""
   const dmdC = 'D'; const dmd = "←↩,⋄→";
   const comC = 'C'; // ⍝
-  if (!window.APLStyle) {
+  if (!window.BQNStyle) {
     const s = document.createElement("style");
-    s.id = "APLStyle";
+    s.id = "BQNStyle";
     s.innerText=`
-      body.dt .A${regC} { color: #D2D2D2; }  body.lt .A${regC} { color: #000000; }
-      body.dt .A${namC} { color: #D2D2D2; }  body.lt .A${namC} { color: #000000; }
-      body.dt .A${comC} { color: #BBBBBB; }  body.lt .A${comC} { color: #6A737D; }
-      body.dt .A${digC} { color: #AA88BB; }  body.lt .A${digC} { color: #005CC5; }
-      body.dt .A${arrC} { color: #DD99FF; }  body.lt .A${arrC} { color: #005CC5; }
-      body.dt .A${dmdC} { color: #FFFF00; }  body.lt .A${dmdC} { color: #0000FF; }
-      body.dt .A${strC} { color: #DDAAEE; }  body.lt .A${strC} { color: #032F62; }
-      body.dt .A${fnsC} { color: #00FF00; }  body.lt .A${fnsC} { color: #D73A49; }
-      body.dt .A${mopC} { color: #FF9955; }  body.lt .A${mopC} { color: #ED5F00; }
-      body.dt .A${dopC} { color: #FFDD66; }  body.lt .A${dopC} { color: #C82C00; }
-      body.dt .A${dfnC} { color: #AA77BB; }  body.lt .A${dfnC} { color: #A906D4; }
+      body.dt .B${regC} { color: #D2D2D2; }  body.lt .b${regC} { color: #000000; }
+      body.dt .B${namC} { color: #D2D2D2; }  body.lt .b${namC} { color: #000000; }
+      body.dt .B${comC} { color: #BBBBBB; }  body.lt .b${comC} { color: #6A737D; }
+      body.dt .B${digC} { color: #ff6E6E; }  body.lt .b${digC} { color: #005CC5; }
+      body.dt .B${arrC} { color: #DD99FF; }  body.lt .b${arrC} { color: #005CC5; }
+      body.dt .B${dmdC} { color: #FFFF00; }  body.lt .b${dmdC} { color: #0000FF; }
+      body.dt .B${strC} { color: #6A9FFB; }  body.lt .b${strC} { color: #032F62; }
+      body.dt .B${fnsC} { color: #57d657; }  body.lt .b${fnsC} { color: #D73A49; }
+      body.dt .B${mopC} { color: #EB60DB; }  body.lt .b${mopC} { color: #ED5F00; }
+      body.dt .B${dopC} { color: #FFDD66; }  body.lt .b${dopC} { color: #C82C00; }
+      body.dt .B${dfnC} { color: #AA77BB; }  body.lt .b${dfnC} { color: #A906D4; }
     `;
     document.body.appendChild(s);
   }
@@ -48,8 +48,12 @@ function parseBQN(str) {
     else if (arr.includes(c)) res[i] = arrC;
     else if (dmd.includes(c)) res[i] = dmdC;
     else if (nam.includes(c)) {
-      res[i] = namC;
+      let fst = i;
+      if (str[i] == '•') i++;
+      let cs = str[i];
       while(nam.includes(str[i]) || dig.includes(str[i])) i++;
+      let ce = str[i-1];
+      res[fst] = cs=='_'? (ce=='_'? dopC : mopC) : (cs>='A'&&cs<='Z'?fnsC : namC);
       continue;
     }
     else if (c=="'" || c=='"') {
@@ -68,5 +72,5 @@ function parseBQN(str) {
 }
 langs.BQN = () => {
   let str = [...main.value]; // damn UTF16
-  colorCode(str, parseBQN(str), 'A');
+  colorCode(str, parseBQN(str), 'B');
 }
