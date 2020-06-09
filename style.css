@@ -49,6 +49,10 @@ body.dt button[disabled] {
   font-family: "APL386";
   src: url("APL386.ttf");
 }
+@font-face {
+  font-family: "BQN386";
+  src: url("BQN386.ttf");
+}
 
 
 
