@@ -11,14 +11,14 @@
   <script src="diff.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="dark">
-  <button id="saveB" style="height:2.6em;width:4.5em" onclick="save(true)">save</button>
-  <button id="editB" style="height:2.6em;width:4.5em" onclick="md(0)">edit</button>
-  <button id="viewB" style="height:2.6em;width:4.5em" onclick="md(2)">view</button>
-  <button id="jscdB" style="height:2.6em;width:4.5em" onclick="md(1)">setup<br>JS</button>
-  <button id="copyB" style="height:2.6em;width:4.5em" onclick="copy(main.value)">copy</button>
-  <button id="colsB" style="height:2.6em;width:4.5em" onclick="changeTheme()">theme</button>
-  <div style="position:absolute; top:3em; left:.5em; right:.5em; bottom:0">
+<body class="dark" style="font-size: .8em">
+  <button id="saveB" title="alt+s" style="font-size:1em;height:3em;width:4.5em" onclick="save(true)"      >copy<br>link</button>
+  <button id="viewB" title="alt+v" style="font-size:1em;height:3em;width:4.5em" onclick="md(2)"           >view        </button>
+  <button id="editB" title="alt+e" style="font-size:1em;height:3em;width:4.5em" onclick="md(0)"           >edit        </button>
+  <button id="jscdB" title="alt+j" style="font-size:1em;height:3em;width:4.5em" onclick="md(1)"           >setup<br>JS </button>
+  <button id="copyB" title="alt+c" style="font-size:1em;height:3em;width:4.5em" onclick="copy(main.value)">copy<br>code</button>
+  <button id="colsB" title="alt+t" style="font-size:1em;height:3em;width:4.5em" onclick="changeTheme()"   >theme       </button>
+  <div style="position:absolute; top:4em; left:.5em; right:.5em; bottom:0">
     <textarea class="mainArea" id="main" spellcheck="false"></textarea>
     <textarea class="mainArea" id="jscd" spellcheck="false"></textarea>
     <pre      class="mainArea" id="genc" hidden>
