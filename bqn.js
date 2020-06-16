@@ -15,17 +15,17 @@ function parseBQN(str) {
     const s = document.createElement("style");
     s.id = "BQNStyle";
     s.innerText=`
-      body.dt .B${regC} { color: #D2D2D2; }  body.lt .b${regC} { color: #000000; }
-      body.dt .B${namC} { color: #D2D2D2; }  body.lt .b${namC} { color: #000000; }
-      body.dt .B${comC} { color: #BBBBBB; }  body.lt .b${comC} { color: #6A737D; }
-      body.dt .B${digC} { color: #ff6E6E; }  body.lt .b${digC} { color: #005CC5; }
-      body.dt .B${arrC} { color: #DD99FF; }  body.lt .b${arrC} { color: #005CC5; }
-      body.dt .B${dmdC} { color: #FFFF00; }  body.lt .b${dmdC} { color: #0000FF; }
-      body.dt .B${strC} { color: #6A9FFB; }  body.lt .b${strC} { color: #032F62; }
-      body.dt .B${fnsC} { color: #57d657; }  body.lt .b${fnsC} { color: #D73A49; }
-      body.dt .B${mopC} { color: #EB60DB; }  body.lt .b${mopC} { color: #ED5F00; }
-      body.dt .B${dopC} { color: #FFDD66; }  body.lt .b${dopC} { color: #C82C00; }
-      body.dt .B${dfnC} { color: #AA77BB; }  body.lt .b${dfnC} { color: #A906D4; }
+      body.dt .B${regC} { color: #D2D2D2; }  body.lt .B${regC} { color: #000000; }
+      body.dt .B${namC} { color: #D2D2D2; }  body.lt .B${namC} { color: #000000; }
+      body.dt .B${comC} { color: #BBBBBB; }  body.lt .B${comC} { color: #6A737D; }
+      body.dt .B${digC} { color: #ff6E6E; }  body.lt .B${digC} { color: #005CC5; }
+      body.dt .B${arrC} { color: #DD99FF; }  body.lt .B${arrC} { color: #005CC5; }
+      body.dt .B${dmdC} { color: #FFFF00; }  body.lt .B${dmdC} { color: #0000FF; }
+      body.dt .B${strC} { color: #6A9FFB; }  body.lt .B${strC} { color: #032F62; }
+      body.dt .B${fnsC} { color: #57d657; }  body.lt .B${fnsC} { color: #D73A49; }
+      body.dt .B${mopC} { color: #EB60DB; }  body.lt .B${mopC} { color: #ED5F00; }
+      body.dt .B${dopC} { color: #FFDD66; }  body.lt .B${dopC} { color: #C82C00; }
+      body.dt .B${dfnC} { color: #AA77BB; }  body.lt .B${dfnC} { color: #A906D4; }
     `;
     document.body.appendChild(s);
   }

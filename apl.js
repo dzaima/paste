@@ -18,7 +18,7 @@ function parseAPL(str, mode) {
     s.innerText=`
       body.dt .A${regC} { color: #D2D2D2; }  body.lt .A${regC} { color: #000000; }
       body.dt .A${namC} { color: #D2D2D2; }  body.lt .A${namC} { color: #000000; }
-      body.dt .A${comC} { color: #BBBBBB; }  body.lt .A${comC} { color: #6A737D; }
+      body.dt .A${comC} { color: #898989; }  body.lt .A${comC} { color: #6A737D; }
       body.dt .A${digC} { color: #AA88BB; }  body.lt .A${digC} { color: #005CC5; }
       body.dt .A${arrC} { color: #DD99FF; }  body.lt .A${arrC} { color: #005CC5; }
       body.dt .A${dmdC} { color: #FFFF00; }  body.lt .A${dmdC} { color: #0000FF; }

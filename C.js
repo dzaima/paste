@@ -93,12 +93,12 @@ function parseC(str, mode) {
       if (mode!='JS') while('fFlLdDuU'.includes(str[i])) i++;
       continue;
     }
-    else if (nam.includes(c)) {
-      let si = i;
+    else if (nam.includes(c) || c=='@') {
+      let si = i; i++;
       while(nam.includes(str[i]) || dig.includes(str[i])) i++;
       if (keyw.includes(str.substring(si, i))) res[si] = keyC;
       else {
-        res[si] = str[si].toLowerCase()!=str[si]? clsC : namC;
+        res[si] = str[si].toUpperCase()==str[si]? clsC : namC;
         if (mode!='JS' && res[si] == clsC) continue;
         let j = i;
         while (str[j] && str[j]==' ') j++;
