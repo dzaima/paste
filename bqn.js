@@ -3,7 +3,7 @@ function parseBQN(str) {
   const regC = '0';
   const fnsC = '1'; let   fns = "+-×÷⋆√⌊⌈∧∨¬|=≠≤<>≥≡≢⊣⊢⥊∾≍↑↓↕⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔";
   const mopC = '2'; let   mop = "˜˘¨⌜⁼´`";
-  const dopC = '3'; const dop = "∘⊸⟜○⌾⎉⚇⍟";
+  const dopC = '3'; const dop = "∘⊸⟜○⌾⎉⚇⍟⊘◶";
   const namC = '4'; const nam = "•ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_"; // ∆⍙
   const digC = '5'; const dig = "0123456789π∞"; const digS = dig+"¯."; const digM = "eEiI";
   const arrC = '6'; const arr = "⍬‿⦃⦄⟨⟩";
@@ -17,7 +17,7 @@ function parseBQN(str) {
     s.innerText=`
       body.dt .B${regC} { color: #D2D2D2; }  body.lt .B${regC} { color: #000000; }
       body.dt .B${namC} { color: #D2D2D2; }  body.lt .B${namC} { color: #000000; }
-      body.dt .B${comC} { color: #BBBBBB; }  body.lt .B${comC} { color: #6A737D; }
+      body.dt .B${comC} { color: #898989; }  body.lt .B${comC} { color: #6A737D; }
       body.dt .B${digC} { color: #ff6E6E; }  body.lt .B${digC} { color: #005CC5; }
       body.dt .B${arrC} { color: #DD99FF; }  body.lt .B${arrC} { color: #005CC5; }
       body.dt .B${dmdC} { color: #FFFF00; }  body.lt .B${dmdC} { color: #0000FF; }
