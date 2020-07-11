@@ -10,7 +10,7 @@ function parseBQN(str) {
   const dfnC = '7'; const dfn = [..."𝕨𝕩𝔽𝔾𝕎𝕏𝕗𝕘∇{}:"]; // double-strucks are 2-byters
   const strC = '8'; // '' ""
   const dmdC = 'D'; const dmd = "←↩,⋄→";
-  const comC = 'C'; // ⍝
+  const comC = 'C'; // #
   if (!window.BQNStyle) {
     const s = document.createElement("style");
     s.id = "BQNStyle";
@@ -61,7 +61,7 @@ function parseBQN(str) {
       let q = c;
       while(str[i] && str[i]!=q && str[i]!='\n') i++;
     }
-    else if (c=='⍝') {
+    else if (c=='#') {
       res[i] = comC;
       while(str[i] && str[i]!='\n') i++;
     }
