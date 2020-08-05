@@ -39,7 +39,7 @@ function genDiff(str, largs) {
         while(" +-".includes(lns[lni][0])) {
           ln = nln();
           let trln = ln.substring(1);
-          main.value=trln; lang(...largs); let cd = genc.innerHTML; 
+          main.value=trln; lang(...largs); let cd = genc.innerHTML;
           res+= wrap(ln[0]+cd, ln[0]=='+'? addC : ln[0]=='-'? rmdC : regC)+'<br>';
         }
         break;
