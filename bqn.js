@@ -1,13 +1,13 @@
 function parseBQN(str) {
   str = str;
   const regC = '0';
-  const fnsC = '1'; let   fns = "+-×÷⋆√⌊⌈∧∨¬|=≠≤<>≥≡≢⊣⊢⥊∾≍↑↓↕⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔";
-  const mopC = '2'; let   mop = "˜˘¨⌜⁼´`";
-  const dopC = '3'; const dop = "∘⊸⟜○⌾⎉⚇⍟⊘◶";
+  const fnsC = '1'; let   fns = "!+-×÷⋆*√⌊⌈∧∨¬|=≠≤<>≥≡≢⊣⊢⥊∾≍↑↓↕⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔«»⍎⍕";
+  const mopC = '2'; let   mop = "`˜˘¨⁼⌜´˝˙";
+  const dopC = '3'; const dop = "∘⊸⟜○⌾⎉⚇⍟⊘◶⎊";
   const namC = '4'; const nam = "•ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_"; // ∆⍙
   const digC = '5'; const dig = "0123456789π∞"; const digS = dig+"¯."; const digM = "eEiI";
-  const arrC = '6'; const arr = "⍬‿⦃⦄⟨⟩";
-  const dfnC = '7'; const dfn = [..."𝕨𝕩𝔽𝔾𝕎𝕏𝕗𝕘∇{}:"]; // double-strucks are 2-byters
+  const arrC = '6'; const arr = "·⍬‿⦃⦄⟨⟩@";
+  const dfnC = '7'; const dfn = [..."𝕨𝕩𝔽𝔾𝕎𝕏𝕗𝕘𝕣ℝ𝕤𝕊{}:"]; // double-strucks are 2-byters
   const strC = '8'; // '' ""
   const dmdC = 'D'; const dmd = "←↩,⋄→";
   const comC = 'C'; // #
