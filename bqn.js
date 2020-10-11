@@ -9,7 +9,7 @@ function parseBQN(str) {
   const arrC = '6'; const arr = "·⍬‿⦃⦄⟨⟩@";
   const dfnC = '7'; const dfn = [..."𝕨𝕩𝔽𝔾𝕎𝕏𝕗𝕘𝕣ℝ𝕤𝕊{}:"]; // double-strucks are 2-byters
   const strC = '8'; // '' ""
-  const dmdC = 'D'; const dmd = "←↩,⋄→";
+  const dmdC = 'D'; const dmd = "←↩,⋄→⇐";
   const comC = 'C'; // #
   if (!window.BQNStyle) {
     const s = document.createElement("style");
