@@ -3,7 +3,7 @@
 <head>
   <title>Paste</title>
   <meta charset="UTF-8" />
-  <script type="text/javascript"> var langs = {}; </script>
+  <script type="text/javascript"> var langs = {}; var htmlgen = {}; </script>
   <script src="pako.min.js"></script>
   <script src="apl.js"></script>
   <script src="bqn.js"></script>
@@ -16,6 +16,7 @@
   <button id="viewB" title="alt+v" style="font-size:1em;height:3em;width:4.5em" onclick="md(2)"           >view        </button>
   <button id="editB" title="alt+e" style="font-size:1em;height:3em;width:4.5em" onclick="md(0)"           >edit        </button>
   <button id="jscdB" title="alt+j" style="font-size:1em;height:3em;width:4.5em" onclick="md(1)"           >setup<br>JS </button>
+  <div id="ddd"><button id="langB" style="font-size:1em;height:3em;width:4.5em"                           >lang        </button> <div id="ddm"></div></div>
   <button id="copyB" title="alt+c" style="font-size:1em;height:3em;width:4.5em" onclick="copy(main.value)">copy<br>code</button>
   <button id="colsB" title="alt+t" style="font-size:1em;height:3em;width:4.5em" onclick="changeTheme()"   >theme       </button>
   <div style="position:absolute; top:4em; left:.5em; right:.5em; bottom:0">
@@ -40,6 +41,13 @@
       'JS': "lang('JS');",
       'Java': "lang('Java');",
     };
+    var langlist = [
+      ['JavaScript', 'JS'],
+      ['Java', 'Java'],
+      ['C', 'C'],
+      ['APL', 'APL'],
+      ['BQN', 'BQN'],
+    ];
     
     
     var MODE = 0; // 0-edit; 1-JS edit; 2-view
@@ -81,7 +89,7 @@
         code+= html(str[i]);
       }
       code+= "</span>";
-      genc.innerHTML = code;
+      return code;
     }
     
     
@@ -92,6 +100,12 @@
     function font(name, sz) {
       genc.style.fontFamily = name;
       if (sz) genc.style.fontSize = sz+"px";
+    }
+    
+    function langmenu(id) {
+      if (!Object.values(shortJS).includes(jscd.value) && !confirm("This will override all code in the JS tab. Continue?")) return;
+      jscd.value = shortJS[id];
+      if (MODE==2) md(2);
     }
     
     
@@ -171,6 +185,7 @@
         }
         md(main.value? 2 : 0);
       } else md(0);
+      ddm.innerHTML = langlist.map(([n,i])=>'<div class="ddi" onclick="langmenu(\''+i+'\')">'+n+'</div>').join('')
     }
     load();
     window.onhashchange=load;

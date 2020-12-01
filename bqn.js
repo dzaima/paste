@@ -72,5 +72,7 @@ function parseBQN(str) {
 }
 langs.BQN = () => {
   let str = [...main.value]; // damn UTF16
-  colorCode(str, parseBQN(str), 'B');
+  genc.innerHTML = colorCode(str, parseBQN(str), 'B');
 }
+
+htmlgen.BQN = (str, ...lang) => colorCode(str=[...str], parseBQN(str, lang), 'B');

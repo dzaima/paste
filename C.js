@@ -127,7 +127,11 @@ function parseC(str, mode) {
 }
 langs.C = mode => {
   let str = main.value;
-  colorCode(str, parseC(str, mode), 'C');
+  genc.innerHTML = colorCode(str, parseC(str, mode), 'C');
 }
 langs.JS = () => langs.C('JS');
 langs.Java = () => langs.C('Java');
+
+htmlgen.C    = (str, ...lang) => colorCode(str, parseC(str, lang  ), 'C');
+htmlgen.JS   = (str         ) => colorCode(str, parseC(str, 'JS'  ), 'C');
+htmlgen.Java = (str         ) => colorCode(str, parseC(str, 'Java'), 'C');

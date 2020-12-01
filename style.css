@@ -8,6 +8,10 @@ body.dark  { background-color: #383838; color: #D3D3D3; } body.dark  .mainArea {
 body.black { background-color: #222222; color: #D3D3D3; } body.black .mainArea { background-color: #000000; color: #D3D3D3; }
 body.light { background-color: #f8f8f8; color: #000000; } body.light .mainArea { background-color: #ffffff; color: #000000; border: 1px solid #a9a9a9; }
 
+body.dark  #ddm { background-color: #333; border: 1px solid #111; }
+body.black #ddm { background-color: #000; border: 1px solid #AAA; }
+body.light #ddm { background-color: #fff; border: 1px solid #333; }
+
 
 .mainArea {
   font-family: DejaVu Sans Mono, Consolas, Monaco, Lucida Console, Liberation Mono, Bitstream Vera Sans Mono, Courier New, monospace;
@@ -52,6 +56,31 @@ body.dt button[disabled] {
 @font-face {
   font-family: "BQN386";
   src: url("BQN386.ttf");
+}
+
+
+
+#ddd {
+  position: relative;
+  display: inline-block;
+}
+#ddm {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  font-size: 1.3em;
+  padding: .3em;
+  border-radius: .2em;
+}
+#ddd:hover #ddm {
+  display: block;
+}
+.ddi:not(:last-child) {
+  border-bottom: 1px solid #777;
+}
+.ddi:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 

@@ -30,18 +30,14 @@ function genDiff(str, largs) {
   let pcode = main.value;
   while (lni != lns.length) {
     let ln = nln();
-    // console.log(ln,pS,pE);
     switch(ln[0]) {
-      case '+':
-      case '-':
       case '\\': res+= wrap(html(ln), ignC)+"<br>"; break;
-      case '@': res+= wrap(html(ln), ignC)+"<br>";
-        while(" +-".includes(lns[lni][0])) {
-          ln = nln();
-          let trln = ln.substring(1);
-          main.value=trln; lang(...largs); let cd = genc.innerHTML;
-          res+= wrap(ln[0]+cd, ln[0]=='+'? addC : ln[0]=='-'? rmdC : regC)+'<br>';
-        }
+      case '@': res+= wrap(html(ln), ignC)+"<br>"; break;
+      case '+': case '-': case ' ':
+        let trln = ln.substring(1);
+        // main.value=trln; lang(...largs); let cd = genc.innerHTML;
+        let cd = htmlgen[largs[0]](trln, ...largs.slice(1));
+        res+= wrap(ln[0]+cd, ln[0]=='+'? addC : ln[0]=='-'? rmdC : regC)+'<br>';
         break;
       default: res+= html(ln)+"<br>"; break;
     }
@@ -54,3 +50,5 @@ langs.diff = (...lang) => {
   let str = main.value;
   genc.innerHTML = genDiff(str, lang);
 }
+
+htmlgen.diff = (str, ...lang) => genDiff(str, lang);
