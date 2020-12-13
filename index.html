@@ -9,21 +9,26 @@
   <script src="bqn.js"></script>
   <script src="C.js"></script>
   <script src="diff.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark" style="font-size: .8em">
-  <button id="saveB" title="alt+s" style="font-size:1em;height:3em;width:4.5em" onclick="save(true)"      >copy<br>link</button>
-  <button id="viewB" title="alt+v" style="font-size:1em;height:3em;width:4.5em" onclick="md(2)"           >view        </button>
-  <button id="editB" title="alt+e" style="font-size:1em;height:3em;width:4.5em" onclick="md(0)"           >edit        </button>
-  <button id="jscdB" title="alt+j" style="font-size:1em;height:3em;width:4.5em" onclick="md(1)"           >setup<br>JS </button>
-  <div id="ddd"><button id="langB" style="font-size:1em;height:3em;width:4.5em"                           >lang        </button> <div id="ddm"></div></div>
-  <button id="copyB" title="alt+c" style="font-size:1em;height:3em;width:4.5em" onclick="copy(main.value)">copy<br>code</button>
-  <button id="colsB" title="alt+t" style="font-size:1em;height:3em;width:4.5em" onclick="changeTheme()"   >theme       </button>
-  <div style="position:absolute; top:4em; left:.5em; right:.5em; bottom:0">
-    <textarea class="mainArea" id="main" spellcheck="false"></textarea>
-    <textarea class="mainArea" id="jscd" spellcheck="false"></textarea>
-    <pre      class="mainArea" id="genc" hidden>
-    </pre>
+  <div class="panels">
+    <div class="btnPanel">
+      <button id="saveB" title="alt+s" style="font-size:1em;height:3em;width:4.5em" onclick="save(true)"      >copy<br>link</button>
+      <button id="viewB" title="alt+v" style="font-size:1em;height:3em;width:4.5em" onclick="md(2)"           >view        </button>
+      <button id="editB" title="alt+e" style="font-size:1em;height:3em;width:4.5em" onclick="md(0)"           >edit        </button>
+      <button id="jscdB" title="alt+j" style="font-size:1em;height:3em;width:4.5em" onclick="md(1)"           >setup<br>JS </button>
+      <div id="ddd"><button id="langB" style="font-size:1em;height:3em;width:4.5em"                           >lang        </button> <div id="ddm"></div></div>
+      <button id="copyB" title="alt+c" style="font-size:1em;height:3em;width:4.5em" onclick="copy(main.value)">copy<br>code</button>
+      <button id="colsB" title="alt+t" style="font-size:1em;height:3em;width:4.5em" onclick="changeTheme()"   >theme       </button>
+    </div>
+    <div class="viewPanel">
+      <textarea class="mainArea" id="main" spellcheck="false"></textarea>
+      <textarea class="mainArea" id="jscd" spellcheck="false"></textarea>
+      <pre      class="mainArea" id="genc" hidden>
+      </pre>
+    </div>
   </div>
   
   <script type="text/javascript">

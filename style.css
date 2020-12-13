@@ -28,6 +28,26 @@ body.light #ddm { background-color: #fff; border: 1px solid #333; }
   display: block; /* for some reason otherwise the global scrollbar appears */
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+.panels {
+  margin: 0 .3em 0 .3em;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.btnPanel {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  flex: 0 1 auto;
+}
+.viewPanel {
+  flex: 1 1 auto;
+  margin-bottom: .5em;
+}
 
 a {
   color: #D3F3D3;
