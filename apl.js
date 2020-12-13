@@ -86,4 +86,4 @@ langs.APL = (mode='dyalog') => {
   genc.innerHTML = colorCode(str, parseAPL(str, mode), 'A');
 }
 
-htmlgen.APL = (str, ...lang) => colorCode(str, parseAPL(str, lang), 'B');
+htmlgen.APL = (str, ...lang) => colorCode(str, parseAPL(str, lang), 'A');
