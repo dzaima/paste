@@ -67,6 +67,7 @@
       viewB.disabled = MODE==2;
       if (mode==0) main.focus();
       if (mode==2) generate();
+      save();
     }
     
     
@@ -111,6 +112,7 @@
       if (jscd.value && !Object.values(shortJS).includes(jscd.value) && !confirm("This will override all code in the JS tab. Continue?")) return;
       jscd.value = shortJS[id];
       if (MODE==2) md(2);
+      save();
     }
     
     
