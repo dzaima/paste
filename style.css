@@ -47,6 +47,7 @@ html, body {
 .viewPanel {
   flex: 1 1 auto;
   margin-bottom: .5em;
+  height: 100%;
 }
 
 a {
