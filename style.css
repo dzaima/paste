@@ -24,6 +24,11 @@ body.light #ddm { background-color: #fff; border: 1px solid #333; }
   margin-bottom: .5em;
   flex: 0 1 auto;
 }
+button {
+  font-size:1em;
+  height:3em;
+  min-width:4.5em;
+}
 .viewPanel {
   flex: 1 1 auto;
   margin-bottom: .5em;
@@ -98,6 +103,7 @@ body.dt button[disabled] {
   font-size: 1.3em;
   padding: .3em;
   border-radius: .2em;
+  white-space: nowrap;
 }
 #ddd:hover #ddm {
   display: block;

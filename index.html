@@ -15,13 +15,14 @@
 <body class="dark" style="font-size: .8em">
   <div class="panels">
     <div class="btnPanel">
-      <button id="saveB" title="alt+s" style="font-size:1em;height:3em;width:4.5em" onclick="save(true)"      >copy<br>link</button>
-      <button id="viewB" title="alt+v" style="font-size:1em;height:3em;width:4.5em" onclick="md(2)"           >view        </button>
-      <button id="editB" title="alt+e" style="font-size:1em;height:3em;width:4.5em" onclick="md(0)"           >edit        </button>
-      <button id="jscdB" title="alt+j" style="font-size:1em;height:3em;width:4.5em" onclick="md(1)"           >setup<br>JS </button>
-      <div id="ddd"><button id="langB" style="font-size:1em;height:3em;width:4.5em"                           >lang        </button> <div id="ddm"></div></div>
-      <button id="copyB" title="alt+c" style="font-size:1em;height:3em;width:4.5em" onclick="copy(main.value)">copy<br>code</button>
-      <button id="colsB" title="alt+t" style="font-size:1em;height:3em;width:4.5em" onclick="changeTheme()"   >theme       </button>
+      <button id="saveB" title="alt+s" onclick="save(true)"      >copy<br>link</button>
+      <button id="copyB" title="alt+c" onclick="copy(main.value)">copy<br>code</button>
+      <button id="fileB" title="ctrl+s"onclick="download()"      >save<br>file</button>
+      <button id="colsB" title="alt+t" onclick="changeTheme()"   >theme       </button>
+      <button id="editB" title="alt+e" onclick="md(0)"           >edit        </button>
+      <button id="viewB" title="alt+v" onclick="md(2)"     hidden>view        </button>
+      <button id="jscdB" title="alt+j" onclick="md(1)"     hidden>setup<br>JS </button>
+      <div id="ddd"><button id="langB"                     hidden>lang        </button> <div id="ddm"></div></div>
     </div>
     <div class="viewPanel">
       <textarea class="mainArea" id="main" spellcheck="false"></textarea>
@@ -32,25 +33,30 @@
   
   <script type="text/javascript">
     var shortJS = {
-      'APL': "lang('APL');font('APL386');",
-      'APL18': "lang('APL');font('APL386',18);",
+      'APL': "lang('APL');\nfont('APL386');\nfilename('paste.apl');",
+      'APL18': "lang('APL');font('APL386',18);\nfilename('paste.apl');",
       
-      'dAPL': "lang('APL','dzaima');font('APL386');",
-      'dAPL18': "lang('APL','dzaima');font('APL386',18);",
+      'dAPL': "lang('APL','dzaima');font('APL386');\nfilename('paste.apl');",
+      'dAPL18': "lang('APL','dzaima');font('APL386',18);\nfilename('paste.apl');",
       
-      'BQN': "lang('BQN');font('BQN386');",
-      'BQN18': "lang('BQN');font('BQN386',18);",
+      'BQN': "lang('BQN');font('BQN386');\nfilename('paste.bqn');",
+      'BQN18': "lang('BQN');font('BQN386',18);\nfilename('paste.bqn');",
       
-      'C': "lang('C');",
-      'JS': "lang('JS');",
-      'Java': "lang('Java');",
+      'C': "lang('C');\nfilename('paste.c');",
+      'JS': "lang('JS');\nfilename('paste.js');",
+      'Java': "lang('Java');\nfilename('paste.java');",
+      'svg': "genc.innerHTML = main.value;\nfilename('paste.svg');",
+      'html': "genc.innerHTML = main.value;\nfilename('paste.html');",
     };
     var langlist = [
+      ['Plain text', ''],
       ['JavaScript', 'JS'],
       ['Java', 'Java'],
       ['C', 'C'],
       ['APL', 'APL'],
       ['BQN', 'BQN'],
+      ['Rendered HTML', 'html'],
+      ['Rendered SVG', 'svg'],
     ];
     
     
@@ -66,13 +72,17 @@
       viewB.disabled = MODE==2;
       if (mode==0) main.focus();
       if (mode==2) generate();
+      if (mode!=2) {
+        langB.hidden = viewB.hidden = jscdB.hidden = false;
+      }
       save();
     }
     
-    
+    var currentFilename;
     function generate() {
       genc.innerText = main.value;
       genc.style="";
+      currentFilename = "paste.txt";
       eval(jscd.value);
     }
     function colorCode(str, cols, prefix) {
@@ -106,10 +116,13 @@
       genc.style.fontFamily = name;
       if (sz) genc.style.fontSize = sz+"px";
     }
+    function filename(name) {
+      currentFilename = name;
+    }
     
     function langmenu(id) {
       if (jscd.value && !Object.values(shortJS).includes(jscd.value) && !confirm("This will override all code in the JS tab. Continue?")) return;
-      jscd.value = shortJS[id];
+      jscd.value = id? shortJS[id] : '';
       if (MODE==2) md(2);
       save();
     }
@@ -141,6 +154,18 @@
       history.pushState({}, "", b64);
       if (copyLink) copy(location.href.replace("/#", "#"));
     }
+    function download() {
+      md(2);
+      let a = document.createElement("a");
+      a.href = "data:application/x-download;charset=utf-8,"+encodeURIComponent(main.value);
+      a.download = currentFilename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+    
+    
+    
     function enc(str = main.value) {
       let bytes = new TextEncoder("utf-8").encode(str);
       return arrToB64(deflate(bytes));
@@ -191,7 +216,7 @@
         }
         md(main.value? 2 : 0);
       } else md(0);
-      ddm.innerHTML = langlist.map(([n,i])=>'<div class="ddi" onclick="langmenu(\''+i+'\')">'+n+'</div>').join('')
+      ddm.innerHTML = langlist.map(([n, i]) => '<div class="ddi ddil" onclick="langmenu(\''+i+'\')">'+n+'</div>').join('')
     }
     load();
     window.onhashchange=load;
@@ -207,6 +232,8 @@
         if (code == 'KeyJ') { jscdB.click(); e.preventDefault(); jscd.focus(); }
         if (code == 'KeyC') { copyB.click(); e.preventDefault(); }
         if (code == 'KeyT') { colsB.click(); e.preventDefault(); }
+      } else if (ctrl) {
+        if (code == 'KeyS') { fileB.click(); e.preventDefault(); viewB.click(); }
       }
       if (ctrl && code == 'KeyR') save(false);
       if (code == 'F5') save(false);
