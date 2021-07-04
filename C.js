@@ -32,7 +32,7 @@ function parseC(str, mode) {
       body.dt .C${regC} { color: #D2D2D2; }  body.lt .C${regC} { color: #000000; }
       body.dt .C${namC} { color: #D2D2D2; }  body.lt .C${namC} { color: #000000; }
       body.dt .C${clsC} { color: #81A2BE; }  body.lt .C${clsC} { color: #6F42C1; }
-      body.dt .C${funC} { color: #AC885B; }  body.lt .C${funC} { color: #6F42C1; } 
+      body.dt .C${funC} { color: #AC885B; }  body.lt .C${funC} { color: #6F42C1; }
       body.dt .C${keyC} { color: #CF6A4C; }  body.lt .C${keyC} { color: #D73A49; }
       body.dt .C${comC} { color: #808080; }  body.lt .C${comC} { color: #6A737D; }
       body.dt .C${opsC} { color: #CC7832; }  body.lt .C${opsC} { color: #D73A49; }

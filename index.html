@@ -7,6 +7,7 @@
   <script src="pako.min.js"></script>
   <script src="apl.js"></script>
   <script src="bqn.js"></script>
+  <script src="asm.js"></script>
   <script src="C.js"></script>
   <script src="diff.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,6 +48,7 @@
       'Java': "lang('Java');\nfilename('paste.java');",
       'svg': "genc.innerHTML = main.value;\nfilename('paste.svg');",
       'html': "genc.innerHTML = main.value;\nfilename('paste.html');",
+      'asm': "lang('asm');"
     };
     var langlist = [
       ['Plain text', ''],
@@ -57,6 +59,7 @@
       ['BQN', 'BQN'],
       ['Rendered HTML', 'html'],
       ['Rendered SVG', 'svg'],
+      ['Assembly', 'asm'],
     ];
     
     
