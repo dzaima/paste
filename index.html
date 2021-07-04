@@ -89,14 +89,6 @@
       eval(jscd.value);
     }
     function colorCode(str, cols, prefix) {
-      let prev = cols[0];
-      for (let i = 1; i < cols.length; i++) {
-        let curr = cols[i];
-        if (curr) {
-          if (curr===prev) cols[i] = undefined;
-          else prev = curr;
-        }
-      }
       const wrap = (sub,col) => `<span class=${prefix+col}>${html(sub)}</span>`;
       let code = "";
       let pcol = cols[0];
