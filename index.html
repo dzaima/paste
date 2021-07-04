@@ -97,16 +97,19 @@
           else prev = curr;
         }
       }
+      const wrap = (sub,col) => `<span class=${prefix+col}>${html(sub)}</span>`;
       let code = "";
+      let pcol = cols[0];
+      let li = 0;
       for (let i = 0; i < str.length; i++) {
-        let ccol = cols[i];
-        if (ccol) {
-          if (code) code+= "</span>";
-          code+= "<span class="+prefix+ccol+">"
+        let ncol = cols[i];
+        if (ncol && pcol!=ncol) {
+          code+= wrap(str.slice(li,i), pcol);
+          li = i;
+          pcol = ncol;
         }
-        code+= html(str[i]);
       }
-      code+= "</span>";
+      if (pcol) code+= wrap(str.slice(li), pcol);
       return code;
     }
     
@@ -197,8 +200,19 @@
       return pako.inflateRaw(arr);
     }
     
+    let htmlMap = {};
     function html(str) {
-      return new Option(str).innerHTML.replace(/\n/g,'<br>');
+      let res = "";
+      for (let chr of str) {
+        if (chr>='0'&chr<='9' | chr>='a'&chr<='z' | chr>='A'&chr<='Z' | chr==' ' | chr=='_') res+= chr;
+        else if (chr=='\n') res+= '<br>';
+        else {
+          let m = htmlMap[chr];
+          if (!m) m = htmlMap[chr] = new Option(chr).innerHTML;
+          res+= m;
+        }
+      }
+      return res;
     }
     function copy(str) {
       navigator.clipboard.writeText(str);
