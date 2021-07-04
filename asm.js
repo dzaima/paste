@@ -63,7 +63,12 @@ function parseAsm(str) {
     const c = str[i++];
     switch(c) {
       case '/':
-        if (str[i]=='*') ; // todo
+        if (str[i]=='*') {
+          res[si] = comC;
+          i+= 2;
+          while (i<len && !(str[i-1]=='*' && str[i]=='/')) i++;
+          break;
+        }
         if (str[i]!='/') break;
         // fallthrough
       case '#': // comments
