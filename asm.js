@@ -99,7 +99,7 @@ function parseAsm(str) {
             let wend = w.length;
             while (wend>0 && num(w[wend-1])) wend--;
             if (wend<5 && regs.test(w)) ty = argC;
-            if (!ty && ['byte','word','dword','qword','tword','ptr'].includes(w)) ty = ptrC;
+            if (!ty && ['ptr','byte','word','dword','qword','tword','mmword','xmmword','ymmword','zmmword'].includes(w)) ty = ptrC;
           }
           if (!ty) ty = hasAl? lblC : insC;
           res[si - (str[si-1]=='$'? 1 : 0)] = ty;
