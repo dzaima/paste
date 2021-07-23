@@ -50,7 +50,7 @@ function parseAsm(str) {
       hasAl = false;
       while (true) {
         let c = str[j];
-        if (c=='/' | c=='#' | c=='"' | c=="'" | c=='[' | c=='(' | c=='|' | c=='│') { raw = c=='|'|c=='│'; break; }
+        if (j>len | c=='/' | c=='#' | c=='"' | c=="'" | c=='[' | c=='(' | c=='|' | c=='│') { raw = c=='|'|c=='│'; break; }
         j++;
       }
       if (raw) {

@@ -65,7 +65,7 @@
     
     var MODE = 0; // 0-edit; 1-JS edit; 2-view
     
-    function md(mode) {
+    function md(mode, quiet=false) {
       MODE = mode;
       main.style.display = MODE==0? 'block' : 'none';
       jscd.style.display = MODE==1? 'block' : 'none';
@@ -78,7 +78,7 @@
       if (mode!=2) {
         langB.hidden = viewB.hidden = jscdB.hidden = false;
       }
-      save();
+      save(false, quiet);
     }
     
     var currentFilename;
@@ -86,7 +86,11 @@
       genc.innerText = main.value;
       genc.style="";
       currentFilename = "paste.txt";
-      eval(jscd.value);
+      try {
+        eval(jscd.value);
+      } catch (e) {
+        console.error(e);
+      }
     }
     function colorCode(str, cols, prefix) {
       const wrap = (sub,col) => `<span class=${prefix+col}>${html(sub)}</span>`;
@@ -122,7 +126,7 @@
       if (jscd.value && !Object.values(shortJS).includes(jscd.value) && !confirm("This will override all code in the JS tab. Continue?")) return;
       jscd.value = id? shortJS[id] : '';
       if (MODE==2) md(2);
-      save();
+      else save();
     }
     
     
@@ -140,7 +144,7 @@
     changeTheme(localStorage.theme? +localStorage.theme : 0);
     
     
-    function save(copyLink = false) {
+    function save(copyLink = false, quiet=false) {
       let b64 = "#0"+enc(main.value);
       if (jscd.value) {
         let ext = enc(jscd.value);
@@ -149,7 +153,10 @@
         }
         b64+= "#"+ext;
       }
-      history.pushState({}, "", b64);
+      if (location.hash != b64) {
+        if (quiet) history.replaceState({}, "", b64);
+        else       history.   pushState({}, "", b64);
+      }
       if (copyLink) copy(location.href.replace("/#", "#"));
     }
     function download() {
@@ -223,8 +230,8 @@
           if (shortJS[p2]) jscd.value = shortJS[p2];
           else jscd.value = dec(p2);
         }
-        md(main.value? 2 : 0);
-      } else md(0);
+        md(main.value? 2 : 0, true);
+      } else md(0, true);
       ddm.innerHTML = langlist.map(([n, i]) => '<div class="ddi ddil" onclick="langmenu(\''+i+'\')">'+n+'</div>').join('')
     }
     load();
