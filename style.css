@@ -29,6 +29,9 @@ button {
   height:3em;
   min-width:4.5em;
 }
+button#langB {
+  pointer-events: none;
+}
 .viewPanel {
   flex: 1 1 auto;
   margin-bottom: .5em;
