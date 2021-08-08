@@ -27,6 +27,7 @@ function parseAsm(str) {
       body.lt .S${barC}:after { border-color: #777B82; }
       .S${barC} { visibility: hidden; font-size:0px; } /* horrible hack, but it appears to work so */
       .S${barC}:after { font-size: 14px; visibility: visible; content: ""; border-right: 1px solid; }
+      .jmp { cursor: pointer; }
     `;
     document.body.appendChild(s);
   }
@@ -124,6 +125,50 @@ function parseAsm(str) {
 langs.asm = () => {
   let str = main.value;
   genc.innerHTML = colorCode(str, parseAsm(str), 'S');
+}
+langs.perf = () => {
+  let str = main.value;
+  let lns = str.split('\n');
+  let w = lns.find(c=>c.includes('Disassembly of section')).indexOf("Disassembly");
+  let pad = " ".repeat(w);
+  genc.innerHTML = lns.map(ln=>{
+    if (/^[ ↑↓→]{2}/.test(ln.substring(w))) {
+      let start = ln.substring(0,w+2);
+      let asm = ln.substring(w+2);
+      let asmHtml = colorCode(asm, parseAsm(asm), 'S');
+      
+      let time = start.match(/(\d+\.\d+)/);
+      if (time!==null) time = +time[1];
+      let addr = start.match(/([0-9a-fA-F]+):/);
+      let jmp = asm.match(/^(j\w+)\s+([0-9a-fA-F]+)\s+$/);
+      if (jmp!==null) jmp = jmp[2];
+      
+      
+      return `<span class="linebg" ${addr===null?'':`id="i_${addr[1]}"`} ${time==null?'':`style="background-color:rgba(255,0,0,${time/30})"`}>`+'<span style="font-size: .8em;">'+start+'</span>'+(jmp===null? asmHtml : `<span class="jmp" data-to="${jmp}">`+asmHtml+'</span>')+'</span>';
+    } else if (ln.startsWith(pad)) return '<span class="linebg SC" style="background-color:rgba(127,127,127,.1);">'+html(ln.substring(w))+'</span>';
+    else return html(ln);
+  }).join('<br>');
+  for (let c of genc.getElementsByClassName("jmp")) {
+    let timed = false;
+    c.onclick = () => {
+      let target = genc.querySelector("#i_"+c.dataset.to);
+      target.style.backgroundColor="rgba(36, 175, 42, .34)";
+      target.scrollIntoView();
+      timed = true;
+      setTimeout(c=>{
+        target.style.backgroundColor="";
+        timed = false;
+      }, 2000);
+    }
+    c.onmouseenter = () => {
+      let target = genc.querySelector("#i_"+c.dataset.to);
+      if (!timed) target.style.backgroundColor="rgba(36, 175, 42, .34)";
+    }
+    c.onmouseleave = () => {
+      let target = genc.querySelector("#i_"+c.dataset.to);
+      if (!timed) target.style.backgroundColor="";
+    }
+  }
 }
 
 htmlgen.asm = (str, ...lang) => colorCode(str, parseAPL(str, lang), 'S');

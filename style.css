@@ -121,15 +121,21 @@ body.dt button[disabled] {
 
 
 
-::-webkit-scrollbar-button, ::-webkit-scrollbar-track {
+.linebg {
+  width: 100%;
+  display: inline-block;
+}
+
+
+body.dt ::-webkit-scrollbar-button, body.dt ::-webkit-scrollbar-track {
   display:none;
 }
-::-webkit-scrollbar-thumb {
+body.dt ::-webkit-scrollbar-thumb {
   background-color:#666;
 }
-::-webkit-scrollbar, ::-webkit-scrollbar-corner {
+body.dt ::-webkit-scrollbar, body.dt ::-webkit-scrollbar-corner {
   background-color:#333;
 }
-::-webkit-scrollbar-thumb {
+body.dt ::-webkit-scrollbar-thumb {
   border: none;
 }
