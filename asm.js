@@ -126,7 +126,7 @@ langs.asm = () => {
   let str = main.value;
   genc.innerHTML = colorCode(str, parseAsm(str), 'S');
 }
-langs.perf = () => {
+langs.perf = (div=30) => {
   let str = main.value;
   let lns = str.split('\n');
   let w = lns.find(c=>c.includes('Disassembly of section')).indexOf("Disassembly");
@@ -144,7 +144,7 @@ langs.perf = () => {
       if (jmp!==null) jmp = jmp[2];
       
       
-      return `<span class="linebg" ${addr===null?'':`id="i_${addr[1]}"`} ${time==null?'':`style="background-color:rgba(255,0,0,${time/30})"`}>`+'<span style="font-size: .8em;">'+start+'</span>'+(jmp===null? asmHtml : `<span class="jmp" data-to="${jmp}">`+asmHtml+'</span>')+'</span>';
+      return `<span class="linebg" ${addr===null?'':`id="i_${addr[1]}"`} ${time==null?'':`style="background-color:rgba(255,0,0,${time/div})"`}>`+'<span style="font-size: .8em;">'+start+'</span>'+(jmp===null? asmHtml : `<span class="jmp" data-to="${jmp}">`+asmHtml+'</span>')+'</span>';
     } else if (ln.startsWith(pad)) return '<span class="linebg SC" style="background-color:rgba(127,127,127,.1);">'+html(ln.substring(w))+'</span>';
     else return html(ln);
   }).join('<br>');
