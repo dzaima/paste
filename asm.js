@@ -140,7 +140,7 @@ langs.perf = (div=30) => {
       let time = start.match(/(\d+\.\d+)/);
       if (time!==null) time = +time[1];
       let addr = start.match(/([0-9a-fA-F]+):/);
-      let jmp = asm.match(/^(j\w+)\s+([0-9a-fA-F]+)\s+$/);
+      let jmp = asm.match(/^(j\w+)\s+([0-9a-fA-F]+)\s*$/);
       if (jmp!==null) jmp = jmp[2];
       
       
