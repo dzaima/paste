@@ -22,6 +22,7 @@
       <button id="fileB" title="ctrl+s"onclick="download()"      >save<br>file</button>
       <button id="colsB" title="alt+t" onclick="changeTheme()"   >theme       </button>
       <button id="editB" title="alt+e" onclick="md(0)"           >edit        </button>
+      <button id="moreB"               onclick="moreBtn()"       >settings</button>
       <button id="viewB" title="alt+v" onclick="md(2)"     hidden>view        </button>
       <button id="jscdB" title="alt+j" onclick="md(1)"     hidden>setup<br>JS </button>
       <div id="ddd"><button id="langB"                     hidden>lang        </button> <div id="ddm"></div></div>
@@ -35,14 +36,14 @@
   
   <script type="text/javascript">
     var shortJS = {
-      'APL': "lang('APL');\nfont('APL386');\nfilename('paste.apl');",
-      'APL18': "lang('APL');font('APL386',18);\nfilename('paste.apl');",
+      'APL': "lang('APL');\nfont('APL386,monospace');\nfilename('paste.apl');",
+      'APL18': "lang('APL');font('APL386,monospace',18);\nfilename('paste.apl');",
       
-      'dAPL': "lang('APL','dzaima');font('APL386');\nfilename('paste.apl');",
-      'dAPL18': "lang('APL','dzaima');font('APL386',18);\nfilename('paste.apl');",
+      'dAPL': "lang('APL','dzaima');font('APL386,monospace');\nfilename('paste.apl');",
+      'dAPL18': "lang('APL','dzaima');font('APL386,monospace',18);\nfilename('paste.apl');",
       
-      'BQN': "lang('BQN');font('BQN386');\nfilename('paste.bqn');",
-      'BQN18': "lang('BQN');font('BQN386',18);\nfilename('paste.bqn');",
+      'BQN': "lang('BQN');font('BQN386,monospace');\nfilename('paste.bqn');",
+      'BQN18': "lang('BQN');font('BQN386,monospace',18);\nfilename('paste.bqn');",
       
       'C': "lang('C');\nfilename('paste.c');",
       'JS': "lang('JS');\nfilename('paste.js');",
@@ -69,6 +70,11 @@
     
     var MODE = 0; // 0-edit; 1-JS edit; 2-view
     
+    function moreBtn() {
+      langB.hidden = viewB.hidden = jscdB.hidden = false;
+      moreB.hidden = true;
+    }
+    
     function md(mode, quiet=false) {
       MODE = mode;
       main.style.display = MODE==0? 'block' : 'none';
@@ -79,9 +85,7 @@
       viewB.disabled = MODE==2;
       if (mode==0) main.focus();
       if (mode==2) generate();
-      if (mode!=2) {
-        langB.hidden = viewB.hidden = jscdB.hidden = false;
-      }
+      if (mode!=2) moreBtn();
       save(false, quiet);
     }
     
