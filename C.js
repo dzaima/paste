@@ -2,7 +2,7 @@ function parseC(str, mode) {
   const regC = '0';
   const namC = '1'; const nam = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_$";
   const clsC = '2'; // ^ but starting with uppercase
-  const opsC = '3'; const ops = "=+-*/<>&|%!~";
+  const opsC = '3'; const ops = "=+-*/<>&|%!~^";
   const keyC = '4';
   const digC = '5'; const dig = "0123456789";
   const strC = '6';
@@ -21,6 +21,8 @@ function parseC(str, mode) {
     'goto','if','implements','import','in','instanceof','int','interface','let','long','native','new','null','package','private',
     'protected','public','return','short','static','super','switch','synchronized','this','throw','throws','transient','true',
     'try','typeof','var','void','volatile','while','with','yield']
+  : mode == 'singeli'?
+    ['def','include','do','while','if','else','return','oper','prefix','infix','left','none','over','from','to','_','load','store','type','typekind','cast']
   :
     ['auto','break','case','char','const','continue','default','do','double','else','enum',
     'extern','float','for','goto','if','int','long','register','return','short','signed','sizeof',
@@ -81,7 +83,7 @@ function parseC(str, mode) {
       i++;
       while(str[i] && str[i]!=c && (str[i]!='\n' || c=="`")) i+= str[i]=='\\'? 2 : 1;
     }
-    else if (c=='/' && n=='/') {
+    else if (mode=='singeli'? c=='#' : c=='/' && n=='/') {
       res[i] = comC;
       while(str[i] && str[i]!='\n') i++;
     }
@@ -97,8 +99,9 @@ function parseC(str, mode) {
       let si = i; i++;
       while(nam.includes(str[i]) || dig.includes(str[i])) i++;
       if (keyw.includes(str.substring(si, i))) res[si] = keyC;
+      else if (mode=='singeli' && ["u8", "u16", "u32", "u64", "i8", "i16", "i32", "i64"].includes(str.substring(si,i))) res[si] = clsC;
       else {
-        res[si] = str[si].toUpperCase()==str[si]? clsC : namC;
+        res[si] = mode=='singeli'&&c=='@'? keyC : str[si].toUpperCase()==str[si]? clsC : namC;
         if (mode!='JS' && res[si] == clsC) continue;
         let j = i;
         while (str[j] && str[j]==' ') j++;
@@ -131,7 +134,9 @@ langs.C = mode => {
 }
 langs.JS = () => langs.C('JS');
 langs.Java = () => langs.C('Java');
+langs.singeli = () => langs.C('singeli');
 
-htmlgen.C    = (str, ...lang) => colorCode(str, parseC(str, lang  ), 'C');
-htmlgen.JS   = (str         ) => colorCode(str, parseC(str, 'JS'  ), 'C');
-htmlgen.Java = (str         ) => colorCode(str, parseC(str, 'Java'), 'C');
+htmlgen.C       = (str, ...lang) => colorCode(str, parseC(str, lang     ), 'C');
+htmlgen.JS      = (str         ) => colorCode(str, parseC(str, 'JS'     ), 'C');
+htmlgen.Java    = (str         ) => colorCode(str, parseC(str, 'Java'   ), 'C');
+htmlgen.singeli = (str         ) => colorCode(str, parseC(str, 'singeli'), 'C');
