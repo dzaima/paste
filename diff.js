@@ -20,8 +20,8 @@ function genDiff(str, largs) {
       body.dt .${regC} { color: #D2D2D2; }  body.lt .${regC} { color: #000000; }
       body.dt .${ignC} { color: #808080; }  body.lt .${ignC} { color: #808080; }
       
-      body.dt .${rmdC} { width:100%; display:inline-block; background-color: #401E1E; }  body.lt .${rmdC} { width:100%; display:inline-block; background-color: #ffd8d8; }
-      body.dt .${addC} { width:100%; display:inline-block; background-color: #233E23; }  body.lt .${addC} { width:100%; display:inline-block; background-color: #ccffcc; }
+      body.dt .${rmdC} { width:100%; display:inline-block; background-color: #9F1E1E3B; }  body.lt .${rmdC} { width:100%; display:inline-block; background-color: #ff000033; }
+      body.dt .${addC} { width:100%; display:inline-block; background-color: #469B463B; }  body.lt .${addC} { width:100%; display:inline-block; background-color: #00ff003b; }
     `;
     document.body.appendChild(s);
   }
