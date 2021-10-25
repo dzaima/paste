@@ -99,7 +99,7 @@ function parseC(str, mode) {
       let si = i; i++;
       while(nam.includes(str[i]) || dig.includes(str[i])) i++;
       if (keyw.includes(str.substring(si, i))) res[si] = keyC;
-      else if (mode=='singeli' && ["u1", "u8", "u16", "u32", "u64", "i8", "i16", "i32", "i64"].includes(str.substring(si,i))) res[si] = clsC;
+      else if (mode=='singeli' && ["void", "u1", "u8", "u16", "u32", "u64", "i8", "i16", "i32", "i64", "f32", "f64"].includes(str.substring(si,i))) res[si] = clsC;
       else {
         res[si] = mode=='singeli'&&c=='@'? keyC : str[si].toUpperCase()==str[si]? clsC : namC;
         if (mode!='JS' && res[si] == clsC) continue;
