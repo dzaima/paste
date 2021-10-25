@@ -1,7 +1,7 @@
 function parseBQN(str) {
   str = str;
   const regC = '0';
-  const fnsC = '1'; let   fns = "!+-×÷⋆*√⌊⌈∧∨¬|=≠≤<>≥≡≢⊣⊢⥊∾≍↑↓↕⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔«»⍎⍕";
+  const fnsC = '1'; let   fns = "!+-×÷⋆*√⌊⌈∧∨¬|=≠≤<>≥≡≢⊣⊢⥊∾≍⋈↑↓↕⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔«»⍎⍕";
   const mopC = '2'; let   mop = "`˜˘¨⁼⌜´˝˙";
   const dopC = '3'; const dop = "∘⊸⟜○⌾⎉⚇⍟⊘◶⎊";
   const namC = '4'; const nam = "•ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_"; // ∆⍙
