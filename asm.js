@@ -171,4 +171,4 @@ langs.perf = (div=30) => {
   }
 }
 
-htmlgen.asm = (str, ...lang) => colorCode(str, parseAPL(str, lang), 'S');
+htmlgen.asm = (str, ...lang) => colorCode(str, parseAsm(str, lang), 'S');
