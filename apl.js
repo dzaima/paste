@@ -55,8 +55,9 @@ function parseAPL(str, mode) {
       while(str[i]) {
         i++;
         if (str[i]=='\n') break;
-        if (str[i]=='"') { res[i] = strC; i++; while(str[i] && str[i]!='"') i++; res[i+1] = regC; }
-        if (str[i]=="'") { res[i] = strC; i++; while(str[i] && str[i]!="'") i++; res[i+1] = regC; }
+        if (str[i]=='"') { res[i] = strC; i++; while(str[i] && str[i]!= '"') i++; res[i+1] = regC; }
+        if (str[i]=="'") { res[i] = strC; i++; while(str[i] && str[i]!= "'") i++; res[i+1] = regC; }
+        if (str[i]=="⍝") { res[i] = comC; i++; while(str[i] && str[i]!='\n') i++; res[i--] = regC; }
       }
     }
     else if (nam.includes(c)) {
