@@ -54,7 +54,22 @@
       'asm': "lang('asm');",
       'perf': "lang('perf');",
       'py': "lang('python');",
-      'mixed': "lang('mixed');"
+      'mixed': "lang('mixed');",
+      'mathjax': `font("Arial", 18);
+let fn = () => {
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [["$","$"]], skipTags: ["script", "style", "textarea"] }
+  });
+  MathJax.Hub.Typeset();
+};
+if (!window.mathjaxScript) {
+  let s = document.createElement("script");
+  s.id = "mathjaxScript"
+  s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML";
+  s.type = "text/javascript"
+  s.onload = fn;
+  document.head.appendChild(s);
+} else fn();`
     };
     var langlist = [
       ['Plain text', ''],
