@@ -76,3 +76,4 @@ langs.python = () => {
   let str = main.value;
   genc.innerHTML = colorCode(str, parsePython(str), 'P');
 }
+htmlgen.python = (str) => colorCode(str, parsePython(str), 'P');
