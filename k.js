@@ -2,7 +2,7 @@ function parseK(str) {
   const regC = '0';
   const fnsC = '1'; let   fns = "+-*%!&|<>=~,^#_?@.";
   const mopC = '2'; let   mop = "/'\\";
-  const namC = '4'; const nam = "⎕⍞∆⍙ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
+  const namC = '4'; const nam = "⎕⍞∆⍙ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
   const digC = '5'; const dig = "0123456789¯∞";
   const parC = '6';
   const dfnC = '7';
