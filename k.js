@@ -9,9 +9,9 @@ function parseK(str) {
   const strC = '8'; // "abc"
   const dmdC = 'D'; const dmd = ":$";
   const comC = 'C';
-  if (!window.APLStyle) {
+  if (!window.kStyle) {
     const s = document.createElement("style");
-    s.id = "APLStyle";
+    s.id = "kStyle";
     s.innerText=`
       body.dt .k${regC} { color: #D2D2D2; }  body.lt .k${regC} { color: #000000; }
       body.dt .k${namC} { color: #D2D2D2; }  body.lt .k${namC} { color: #000000; }
