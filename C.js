@@ -89,7 +89,8 @@ function parseC(str, mode) {
     }
     else if (dig.includes(c) || c=='.'&&dig.includes(n)) {
       res[i] = digC;
-           if (str[i]=='0' && str[i+1]=='x') { i+= 2; while('0123456789abcdefABCDEF'.includes(str[i])) i++; }
+           if (mode=='singeli' && dig.includes(str[i])) while('_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(str[i])) i++;
+      else if (str[i]=='0' && str[i+1]=='x') { i+= 2; while('0123456789abcdefABCDEF'.includes(str[i])) i++; }
       else if (str[i]=='0' && str[i+1]=='b') { i+= 2; while(str[i]=='0'||str[i]=='1') i++; }
       else while(dig.includes(str[i]) || str[i]=='e' || str[i]=='E' || str[i]=='.') i++;
       if (mode!='JS') while('fFlLdDuU'.includes(str[i])) i++;
