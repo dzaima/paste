@@ -54,8 +54,10 @@ function parseC(str, mode='C') {
     const n = str[i+1]||'\0';
     
     if (mode=='C' && (p==='\0' || p==='\n')) {
-      while (' \n\t'.includes(str[i])) i++;
-      if (str[i]=='#') {
+      let j = i;
+      while (' \n\t'.includes(str[j])) j++;
+      if (str[j]=='#') {
+        i = j;
         res[i++] = opsC;
         while ('_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(str[i])) i++;
       }
