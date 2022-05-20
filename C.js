@@ -60,6 +60,7 @@ function parseC(str, mode='C') {
         i = j;
         res[i++] = opsC;
         while ('_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(str[i])) i++;
+        continue;
       }
     }
     if (mode=='JS' && c=='/' && n!='*' && n!='/') {
