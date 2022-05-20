@@ -1,8 +1,8 @@
-function parseC(str, mode) {
+function parseC(str, mode='C') {
   const regC = '0';
   const namC = '1'; const nam = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_$";
   const clsC = '2'; // ^ but starting with uppercase
-  const opsC = '3'; const ops = "=+-*/<>&|%!~^";
+  const opsC = '3'; const ops = "=+-*/<>&|%!~^" + (mode=='C'? "#" : "");
   const keyC = '4';
   const digC = '5'; const dig = "0123456789";
   const strC = '6';
@@ -44,6 +44,7 @@ function parseC(str, mode) {
     `;
     document.body.appendChild(s);
   }
+  
   const res = new Array(str.length).fill();
   res[0] = regC;
   
@@ -52,6 +53,13 @@ function parseC(str, mode) {
     const c = str[i  ];
     const n = str[i+1]||'\0';
     
+    if (mode=='C' && (p==='\0' || p==='\n')) {
+      while (' \n\t'.includes(str[i])) i++;
+      if (str[i]=='#') {
+        res[i++] = opsC;
+        while ('_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(str[i])) i++;
+      }
+    }
     if (mode=='JS' && c=='/' && n!='*' && n!='/') {
       let j = i-1;
       while(str[j] && /\s/.test(str[j])) j--;
