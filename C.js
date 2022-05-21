@@ -23,6 +23,12 @@ function parseC(str, mode='C') {
     'try','typeof','var','void','volatile','while','with','yield']
   : mode == 'singeli'?
     ['def','include','do','while','if','else','return','oper','prefix','infix','left','none','over','from','to','_','load','store','type','typekind','cast']
+  : mode == 'C++'?
+    ['auto','break','case','char','const','continue','default','do','double','else','enum',
+    'extern','float','for','goto','if','int','long','register','return','short','signed','sizeof',
+    'static','struct','switch','typedef','union','unsigned','void','volatile','while','asm','new',
+    'operator','template','private','this','protected','throw','catch','public','try','class','friend',
+    'virtual','inline','delete']
   :
     ['auto','break','case','char','const','continue','default','do','double','else','enum',
     'extern','float','for','goto','if','int','long','register','return','short','signed','sizeof',
