@@ -150,11 +150,13 @@ langs.C = mode => {
   let str = main.value;
   genc.innerHTML = colorCode(str, parseC(str, mode), 'C');
 }
+langs.Cpp = () => langs.C('C++');
 langs.JS = () => langs.C('JS');
 langs.Java = () => langs.C('Java');
 langs.singeli = () => langs.C('singeli');
 
 htmlgen.C       = (str, ...lang) => colorCode(str, parseC(str, lang     ), 'C');
+htmlgen.Cpp     = (str         ) => colorCode(str, parseC(str, 'C++'    ), 'C');
 htmlgen.JS      = (str         ) => colorCode(str, parseC(str, 'JS'     ), 'C');
 htmlgen.Java    = (str         ) => colorCode(str, parseC(str, 'Java'   ), 'C');
 htmlgen.singeli = (str         ) => colorCode(str, parseC(str, 'singeli'), 'C');
