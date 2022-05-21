@@ -2,7 +2,7 @@ function parseC(str, mode='C') {
   const regC = '0';
   const namC = '1'; const nam = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_$";
   const clsC = '2'; // ^ but starting with uppercase
-  const opsC = '3'; const ops = "=+-*/<>&|%!~^" + (mode=='C'? "#" : "");
+  const opsC = '3'; const ops = "=+-*/<>&|%!~^?:" + ((mode=='C' || mode=='C++')? "#" : "");
   const keyC = '4';
   const digC = '5'; const dig = "0123456789";
   const strC = '6';
@@ -23,6 +23,15 @@ function parseC(str, mode='C') {
     'try','typeof','var','void','volatile','while','with','yield']
   : mode == 'singeli'?
     ['def','include','do','while','if','else','return','oper','prefix','infix','left','none','over','from','to','_','load','store','type','typekind','cast']
+  : mode == 'C++'?
+    ['alignas','alignof','and','and_eq','asm','atomic_cancel','atomic_commit','atomic_noexcept','auto','bitand','bitor','bool',
+    'break','case','catch','char','char16_t','char32_t','char8_t','class','co_await','co_return','co_yield','compl','concept',
+    'const','const_cast','consteval','constexpr','constinit','continue','decltype','default','delete','do','double','dynamic_cast',
+    'else','enum','explicit','export','extern','false','float','for','friend','goto','if','inline','int','long','mutable',
+    'namespace','new','noexcept','not','not_eq','nullptr','operator','or','or_eq','private','protected','public','reflexpr',
+    'register','reinterpret_cast','requires','return','short','signed','sizeof','static','static_assert','static_cast','struct',
+    'switch','synchronized','template','this','thread_local','throw','true','try','typedef','typeid','typename','union','unsigned',
+    'using','virtual','void','volatile','wchar_t','while','xor','xor_eq']
   :
     ['auto','break','case','char','const','continue','default','do','double','else','enum',
     'extern','float','for','goto','if','int','long','register','return','short','signed','sizeof',
@@ -53,7 +62,7 @@ function parseC(str, mode='C') {
     const c = str[i  ];
     const n = str[i+1]||'\0';
     
-    if (mode=='C' && (p==='\0' || p==='\n')) {
+    if ((mode=='C' || mode=='C++')  && (p==='\0' || p==='\n')) {
       let j = i;
       while (' \n\t'.includes(str[j])) j++;
       if (str[j]=='#') {
@@ -144,11 +153,13 @@ langs.C = mode => {
   let str = main.value;
   genc.innerHTML = colorCode(str, parseC(str, mode), 'C');
 }
+langs.cpp = () => langs.C('C++');
 langs.JS = () => langs.C('JS');
 langs.Java = () => langs.C('Java');
 langs.singeli = () => langs.C('singeli');
 
 htmlgen.C       = (str, ...lang) => colorCode(str, parseC(str, lang     ), 'C');
+htmlgen.cpp     = (str         ) => colorCode(str, parseC(str, 'C++'    ), 'C');
 htmlgen.JS      = (str         ) => colorCode(str, parseC(str, 'JS'     ), 'C');
 htmlgen.Java    = (str         ) => colorCode(str, parseC(str, 'Java'   ), 'C');
 htmlgen.singeli = (str         ) => colorCode(str, parseC(str, 'singeli'), 'C');
