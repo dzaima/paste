@@ -2,7 +2,7 @@ function parseC(str, mode='C') {
   const regC = '0';
   const namC = '1'; const nam = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_$";
   const clsC = '2'; // ^ but starting with uppercase
-  const opsC = '3'; const ops = "=+-*/<>&|%!~^" + (mode=='C'? "#" : "");
+  const opsC = '3'; const ops = "=+-*/<>&|%!~^" + (mode=='C'? "#" : "") + (mode=='C++'? "#:" : "");
   const keyC = '4';
   const digC = '5'; const dig = "0123456789";
   const strC = '6';
@@ -28,7 +28,7 @@ function parseC(str, mode='C') {
     'extern','float','for','goto','if','int','long','register','return','short','signed','sizeof',
     'static','struct','switch','typedef','union','unsigned','void','volatile','while','asm','new',
     'operator','template','private','this','protected','throw','catch','public','try','class','friend',
-    'virtual','inline','delete']
+    'virtual','inline','delete','typename']
   :
     ['auto','break','case','char','const','continue','default','do','double','else','enum',
     'extern','float','for','goto','if','int','long','register','return','short','signed','sizeof',
@@ -59,7 +59,7 @@ function parseC(str, mode='C') {
     const c = str[i  ];
     const n = str[i+1]||'\0';
     
-    if (mode=='C' && (p==='\0' || p==='\n')) {
+    if ((mode=='C' || mode=='C++')  && (p==='\0' || p==='\n')) {
       let j = i;
       while (' \n\t'.includes(str[j])) j++;
       if (str[j]=='#') {
