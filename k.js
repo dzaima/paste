@@ -56,10 +56,6 @@ function parseK(str) {
       while(nam.includes(str[i]) || dig.includes(str[i])) i++;
       continue;
     }
-    else if (c=="'") {
-      res[i] = strC; i++;
-      while(str[i] && str[i]!="'" && str[i]!='\n') i++;
-    }
     else if (c=='"') {
       res[i] = strC; i++;
       while(str[i] && str[i]!='"' && str[i]!='\n') i+= str[i]=='\\'? 2 : 1;
