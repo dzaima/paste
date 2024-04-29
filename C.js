@@ -16,11 +16,11 @@ function parseC(str, mode='C') {
     'int','interface','long','native','new','null','package','private','protected','public','return','short','static','strictfp',
     'super','switch','synchronized','this','throw','throws','transient','true','try','var','void','volatile','while']
   : mode == 'JS'?
-    ['abstract','arguments','await','boolean','break','byte','case','catch','char','class','const','continue','debugger',
-    'default','delete','do','double','else','enum','eval','export','extends','false','final','finally','float','for','function',
-    'goto','if','implements','import','in','instanceof','int','interface','let','long','native','new','null','package','private',
-    'protected','public','return','short','static','super','switch','synchronized','this','throw','throws','transient','true',
-    'try','typeof','var','void','volatile','while','with','yield']
+    ['arguments','async','await','break','case','catch','class','const','constructor','continue','debugger','default','delete',
+    'do','else','enum','eval','export','extends','false','finally','for','function','if','implements','import','in','instanceof',
+    'interface','let','new','null','of','package','private','protected','public','return','static','super','switch','this','throw',
+    'true','try','typeof','undefined','var','void','while','with','yield']
+    // 'abstract','boolean','byte','char','double','final','float','goto','int','long','native','short','synchronized','throws','transient','volatile'
   : mode == 'singeli'?
     ['_','and','config','def','do','else','extend','fn','from','if','in','include','local','oper','or','over','return','to','while']
   : mode == 'C++'?
