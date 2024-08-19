@@ -22,7 +22,7 @@ function parseC(str, mode='C') {
     'true','try','typeof','undefined','var','void','while','with','yield']
     // 'abstract','boolean','byte','char','double','final','float','goto','int','long','native','short','synchronized','throws','transient','volatile'
   : mode == 'singeli'?
-    ['_','and','config','def','do','else','extend','fn','from','if','in','include','local','oper','or','over','return','to','while']
+    ['_','and','config','def','do','else','extend','fn','from','if','if_inline','in','include','local','match','not','oper','or','over','return','to','while']
   : mode == 'C++'?
     ['alignas','alignof','and','and_eq','asm','atomic_cancel','atomic_commit','atomic_noexcept','auto','bitand','bitor','bool',
     'break','case','catch','char','char16_t','char32_t','char8_t','class','co_await','co_return','co_yield','compl','concept',
