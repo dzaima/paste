@@ -29,9 +29,6 @@ button {
   height:3em;
   min-width:4.5em;
 }
-button#langB {
-  pointer-events: none;
-}
 .viewPanel {
   flex: 1 1 auto;
   margin-bottom: .5em;
@@ -108,7 +105,7 @@ body.dt button[disabled] {
   border-radius: .2em;
   white-space: nowrap;
 }
-#ddd:hover #ddm {
+#ddd:hover #ddm, #ddm:focus-within {
   display: block;
 }
 .ddi:not(:last-child) {

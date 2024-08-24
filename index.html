@@ -26,7 +26,7 @@
       <button id="moreB"               onclick="moreBtn()"       >settings</button>
       <button id="viewB" title="alt+v" onclick="md(2)"     hidden>view        </button>
       <button id="jscdB" title="alt+j" onclick="md(1)"     hidden>setup<br>JS </button>
-      <div id="ddd"><button id="langB"                     hidden>lang        </button> <div id="ddm"></div></div>
+      <div id="ddd"><button id="langB" onclick="langPop()" hidden>lang        </button> <div id="ddm"></div></div>
     </div>
     <div class="viewPanel">
       <textarea class="mainArea" id="main" spellcheck="false"></textarea>
@@ -154,16 +154,29 @@ if (!window.mathjaxScript) {
       currentFilename = name;
     }
     
-    function langmenu(id) {
+    function langPop() {
+      ddm.style.display = "block"; // woo temporarily force-setting style to visible so that the below focus can work and make it actually-intended-visible
+      ddm.children[0].focus();
+      setTimeout(() => ddm.style.display = "", 20);
+    }
+    function anyClick(e, f) {
+      if (e.key=='Enter' || e.key==' ') {
+        e.preventDefault();
+        f(e.key==' ');
+      }
+    }
+    function langmenu(id, weak) {
       if (jscd.value && !Object.values(shortJS).includes(jscd.value) && !confirm("This will override all code in the JS tab. Continue?")) return;
       jscd.value = id? shortJS[id] : '';
       if (MODE==2) md(2);
       else save();
+      if (!weak) langB.focus();
     }
     
     
     var theme = 0; // 0 - dark; 1 - light; 2 - black; 3 - default
     function changeTheme(nTheme = (theme+1) % 4) {
+      if (!Number.isFinite(nTheme)) nTheme = 0;
       theme = nTheme;
       localStorage.theme = nTheme;
       let colorScheme = theme==3? (window.matchMedia('(prefers-color-scheme: dark)').matches? 0 : 1) : theme;
@@ -264,7 +277,7 @@ if (!window.mathjaxScript) {
         }
         md(main.value? 2 : 0, true);
       } else md(0, true);
-      ddm.innerHTML = langlist.map(([n, i]) => '<div class="ddi ddil" onclick="langmenu(\''+i+'\')">'+n+'</div>').join('')
+      ddm.innerHTML = langlist.map(([n, i]) => `<div tabindex="0" class="ddi ddil" onclick="langmenu('${i}')" onkeydown="anyClick(event,weak=>langmenu('${i}',weak))">${n}</div>`).join('')
     }
     load();
     window.onhashchange=load;
