@@ -12,6 +12,7 @@
   <script src="C.js"></script>
   <script src="diff.js"></script>
   <script src="py.js"></script>
+  <script src="ansi.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -58,6 +59,7 @@
       'perf': "lang('perf');",
       'py': "lang('python');\nfilename('paste.py');",
       'mixed': "lang('mixed');",
+      'ansi': "lang('ansi');",
       'mathjax': `font("Arial", 18);
 let fn = () => {
   MathJax.Hub.Config({
@@ -88,7 +90,8 @@ if (!window.mathjaxScript) {
       ['Rendered HTML', 'html'],
       ['Rendered SVG', 'svg'],
       ['Assembly', 'asm'],
-      ['MathJax', 'mathjax']
+      ['MathJax', 'mathjax'],
+      ['Terminal ANSI', 'ansi'],
     ];
     
     
@@ -125,7 +128,19 @@ if (!window.mathjaxScript) {
       }
     }
     function colorCode(str, cols, prefix) {
-      const wrap = (sub,col) => `<span class=${prefix+col}>${html(sub)}</span>`;
+      const wrap = (sub,col) => {
+        if (!col.includes(':') && !col.includes(' ')) return `<span class="${prefix+col}">${html(sub)}</span>`;
+        let cl = '';
+        let st = '';
+        for (let p of col.split(' ')) {
+          if (p.includes(':')) st+=p+';';
+          else cl+=' '+prefix+p;
+        }
+        let r = '<span';
+        if (cl) r+= ` class="${cl.slice(1)}"`;
+        if (st) r+= ` style="${st}"`;
+        return `${r}>${html(sub)}</span>`;
+      };
       let code = "";
       let pcol = cols[0];
       let li = 0;
