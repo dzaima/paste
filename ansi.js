@@ -84,6 +84,8 @@ function parseANSI(str) {
             else if (n==23) ital = false;
             else if (n>=30 && n<=39) fg = color(n-30);
             else if (n>=40 && n<=49) bg = color(n-40);
+            else if (n>=90 && n<=97) fg = n-90+8;
+            else if (n>=100 && n<=107) bg = n-100+8;
           }
           curr = '';
           if (bold)  curr+= " "+cBold;
